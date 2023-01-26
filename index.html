@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale1.0">
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous"
+    referrerpolicy="no-referrer">  
+    <script src="https://cdn.jsdelivr.net/npm/vue-carousel@0.18.0/dist/vue-carousel.min.js"></script>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+  <title>your`s</title>
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- ヘッダー -->
+    <header class="header">
+      <div class="header-left-area">
+        <div class="logo-area">
+          <img :src="logo_path" alt="yoursのロゴ" class="header-logo">
+        </div>     
+        <!-- headerのSNSナビ(PC) -->
+        <ul class="header-sns-nav-menus">
+          <li class="header-sns-nav-menu">
+            <a href="" class="header-sns-nav-link">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+          </li>
+          <li class="header-sns-nav-menu">
+            <a href="" class="header-sns-nav-link">
+              <i class="fa-brands fa-square-facebook"></i>
+            </a>
+          </li>
+          <li class="header-sns-nav-menu">
+            <a href="" class="header-sns-nav-link">
+              <i class="fa-brands fa-twitter"></i>
+            </a>
+          </li>                    
+        </ul>
+        <!-- headerのSNSナビ(PC) -->
+      </div>
+      <div class="header-right-area">
+        <!-- headerのナビ(PC) -->
+        <ul class="header-nav-menus">
+          <li
+            v-for="(menu, i) in header_nav_menus"
+            :key="i"
+            class="header-nav-menu">
+            <a :href="menu.path" class="header-nav-link">{{ menu.label }}</a>
+          </li>
+        </ul>
+        <!-- headerのナビ(PC) -->
+        <!-- headerのナビ(SP) -->
+        <ul class="header-nav-menus_sp">
+          <li
+            v-for="(menu, i) in header_nav_menus_sp"
+            :key="i"
+            class="header-nav-menu-sp">
+            <a :href="menu.path" class="header-nav-link">{{ menu.label }}</a>          
+          </li>
+        </ul>
+        <!-- headerのナビ(SP) -->
+        <!-- headerのハンバーガーボタン(SP) -->
+        <button
+          :class="{'humberger-is-Active' : humbergerisActive}"
+          class="btn-humberger"
+          @click="humbergerButton">
+          <span></span>
+          <div class="btn-humberger-text">MENU</div>
+          <span></span>
+        </button>
+        <!-- headerのハンバーガーボタン(SP) -->        
+      </div>
+    </header>
+    <!-- ヘッダー -->
+
+    <!-- ハンバーガーナビ(SP) -->
+    <div 
+      :class="{'isOpened' : humbergerisActive}"
+      class="lists-humberger"
+      @click="humbergerButton"
+      >
+      <humbergerlists
+        v-for="(menu, i) in humberger_lists"
+        :key="i"
+        :regiser="menu.regiser"
+        :regiser_btn_label="menu.regiser_btn_label"
+        :regiser_btn_path="menu.regiser_btn_path"
+        :login_btn_label="menu.login_btn_label"
+        :login_btn_path="menu.login_btn_path"
+        :order="menu.order"
+        :order_btn_label="menu.order_btn_label"
+        :order_btn_path="menu.order_btn_path"
+        :sns="menu.sns"
+        :insta="menu.insta"
+        :twitter="menu.twitter"
+        :facebook="menu.facebook"
+        :site_map="menu.site_map"
+        :label_top="menu.label_top"
+        :label_apply="menu.label_apply"
+        :label_login="menu.label_login"
+        :label_items="menu.label_items"
+        :label_myorder="menu.label_myorder">
+      </humbergerlists>
+    </div>
+    <!-- ハンバーガーナビ(SP) -->
+
+    <!-- topページスライダー -->
+    <div class="top">
+      <swiper :options="swiperOptions">
+        <swiper-slide
+          v-for="(menu, i) in slider_img_list"
+          :key="i"
+          class="slider_img_list">
+          <img :src="menu.path" alt="" class="slider_imgs">
+        </swiper-slide>              
+      </swiper>
+      <div class="top-h1-area">
+        <toph1
+          v-for="(menu, i) in top_h1"
+          :key="i"
+          :h1="menu.h1">
+        </toph1>
+      </div>
+    </div>
+    <!-- topページスライダー -->
+
+    <!-- aboutページ -->
+    <div class="about">
+      <div class="about-background-left-outer">
+        <h1 class="about-h1">{{ about_h1 }}</h1>
+        <!-- aboutの写真(sp) -->
+        <div class="about-img-sp-outer">
+          <img :src="about_img_path_sp" alt="about画面の写真" class="about-img-sp">
+        </div>
+        <!-- aboutの写真(sp) -->        
+        <div class="about-h2-outer">
+          <h2
+          v-for="(menu, i) in about_h2"
+          :key="i"
+          class="about-h2">{{ menu.h2 }}</h2>
+        </div>
+        <div class="about-explains-outer">
+          <p
+          v-for="(menu, i) in about_explains"
+          :key="i"
+          class="explain about-explain">{{ menu.explain }}</p>
+        </div>
+        <applybtn 
+          :path="btn_arrow_path"
+          class="about-apply-btn"></applybtn>
+      </div>
+      <div class="about-img-pc-outer">
+        <img :src="about_img_path_pc" alt="aboutの写真" class="about-main-img">
+      </div>
+      <div class="about-background-right-outer"></div>
+    </div> 
+    <!-- aboutページ -->
+
+    <!-- serviceページ -->
+    <div class="service">
+      <h1 class="service-h1">{{ service_h1 }}</h1>
+      <div class="servic-btn-area">
+        <servicebtn
+          v-for="(menu, i) in service_btn_contens"
+          :key="i"
+          :id="menu.id"
+          :span_outer_class="menu.span_outer_class"
+          :span_inner_class="menu.span_inner_class"
+          :service_icons_path="menu.service_icons_path"
+          :service_name="menu.service_name"
+          :servise_plice="menu.servise_plice"
+          :view_more="menu.view_more"
+          :view_arrow_1_path="menu.view_arrow_1_path"
+          :view_arrow_2_path="menu.view_arrow_2_path">
+        </servicebtn>
+      </div>
+    </div>
+    <!-- serviceページ -->
+
+    <!-- reviewページ -->
+    <div class="review">
+      <div class="review-main-area-outer">
+        <h1 class="review-h1">{{ review_h1 }}</h1>
+        <!-- SPメイン写真 -->
+        <div class="review-main-img-area-sp-outer">
+          <reviewmainimgareasp
+            v-for="(menu, i) in review_main_img_list_sp"
+            :key="i"
+            :img_id="menu.img_id"
+            :img_path="menu.img_path"
+            :date="menu.date"
+            :initial="menu.initial"
+            :btn_id="menu.btn_id"
+            :btn_path="menu.btn_path"
+            @clickopenmodal($event)="openModal"
+            @clickopenmodal($event)="openModal"
+            >
+          </reviewmainimgareasp>
+        </div>
+        <!-- reviewの詳細 -->
+        <div class="review-contents">
+          <reviewh2
+            v-for="(menu, i) in review_h2"
+            :key="i"
+            :review_h2="menu.h2">
+          </reviewh2>
+        <div class="review-explain-block">
+          <reviewcontent1
+            v-for="(menu, i) in review_explains_list_1"
+            :key="i"
+            :review_explains_list_1="menu.explain">
+          </reviewcontent1>
+        </div>
+        <div class="review-explain-block">
+          <reviewcontent2
+            v-for="(menu, i) in review_explains_list_2"
+            :key="i"
+            :review_explains_list_2="menu.explain">
+          </reviewcontent2>
+        </div>  
+        </div>
+        <div class="review-btn-area">
+          <applybtn 
+            :path="btn_arrow_path"
+            class="review-apply-btn">
+          </applybtn>          
+          <itemsbtn
+            :path="btn_arrow_path">
+          </itemsbtn>
+        </div>
+      </div>
+      <div class="review-img-area-pc-outer">
+        <reviewmainimgareapc
+            v-for="(menu, i) in review_main_img_area_pc"
+            :key="i"
+            :img_id="menu.img_id"
+            :img_path="menu.img_path"
+            :date="menu.date"
+            :initial="menu.initial"
+            :btn_id="menu.btn_id"
+            :btn_path="menu.btn_path"
+            @clickopenmodal($event)="openModal"
+            @clickopenmodal($event)="openModal">
+        </reviewmainimgareapc>      
+      </div>
+    </div>
+    <!-- reviewページ -->
+
+    <!-- モーダル -->
+    <transition name="fade">
+      <modal 
+        :is-shown="isShown"
+        >
+      </modal>
+    </transition>
+    <!-- モーダル -->
+
+    <!-- footer -->
+    <footer class="footer">
+      <div class="footer-block footer-logo-area">
+        <img :src="footer_logo_path" alt="" class="footer-logo">
+        <button class="footer-apply-btn">
+          {{ footer_btn_label }}
+          <img :src="btn_path" alt="" class="footer-btn-arrow">
+        </button>
+      </div>
+      <div class="footer-block footer-site-map">
+        <p class="site-map">{{ site_map }}</p>
+        <ul class="site-map-links">
+            <li
+              v-for="(menu, i) in footer_sitemap_links"    
+              :key="i"  
+              class="footer-link"       
+            >{{ menu.link }}</li>  
+        </ul>
+      </div>
+      <div class="footer-block footer-address">
+        <p class="relation-site">{{ footer_relation_site }}</p>
+        <ul class="relation-links">
+            <li
+              v-for="(menu, i) in footer_relation_site_links"    
+              :key="i"         
+            >{{ menu.link }}</li>  
+        </ul>
+      </div> 
+      <div class="footer-block">
+        <p class="footer-address">{{ footer_address }}</p>
+        <ul class="relation-links">
+            <li
+              v-for="(menu, i) in footer_address_links"    
+              :key="i"    
+              class="footer-link"     
+            >{{ menu.link }}</li>  
+        </ul>
+      </div> 
+      <div class="footer-block footer-sns">
+        <p class="footer-sns">{{ footer_sns }}</p>
+          <ul class="SNS-nav-links navbar">
+            <li class="SNS-nav-link">
+              <a class="nav-link" href="#">
+                <i class="fa-brands fa-square-facebook"></i>
+              </a>
+            </li>
+            <li class="SNS-nav-link">
+              <a class="nav-link" href="#">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+            </li>
+            <li class="SNS-nav-link nav-item active">
+              <a class="nav-link" href="#">
+                <i class="fa-brands fa-twitter"></i>
+              </a>
+            </li>
+          </ul>
+      </div>                  
+    </footer>
+  </div>  
+    <!-- vueの読み込み -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.11/dist/vue.js"></script>
+    <!-- elementの読みこ込み -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!-- Swiper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@5.3.6/js/swiper.min.js"></script>  
+    <!-- vue-awesome-swiper -->
+    <script src="https://cdn.jsdelivr.net/npm/vue-awesome-swiper@3.1.2/dist/vue-awesome-swiper.js"></script>      
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">  
+    <!-- swiperのcss -->
+    <link href="https://cdn.jsdelivr.net/npm/swiper@5.3.6/css/swiper.min.css" rel="stylesheet">      
+    <script src="./script/script.js"></script>
+</body>
+
+</html>

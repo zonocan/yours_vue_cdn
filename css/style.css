@@ -1,0 +1,1068 @@
+@charset "UTF-8";
+
+/* 共通 */
+h1 {
+  font-family: DIN Condensed;
+}
+
+.about-h1,
+.service-h1,
+.review-h1 {
+  font-size: 45px;
+}
+
+.header,
+.about,
+.top,
+.service,
+.review {
+  margin-bottom: 100px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+.explain {
+  font-size: 12px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  background-color: #111111;
+  color: #fff;
+  height: 40px;
+  width: 180px;
+  border: none;
+}
+
+.btn span {
+  font-family: Arial;
+  font-size: 15px;
+  margin: 0 28px;
+}
+/* 共通 */
+
+/* ヘッダー(PC) */
+.header {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  position: fixed;
+  z-index: 10;
+  margin-top: -50px;
+}
+
+.header-left-area{
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  background-color: #fff;  
+  border-top: 3px solid #111111;
+  align-items: center;
+}
+
+.logo-area {
+  margin-left: 10%;
+}
+
+/* SNSリンク */
+.header-sns-nav-menus{
+  display: flex;
+  margin-left: 5%;
+}
+
+.header-sns-nav-menu{
+  height: 47px;
+  width: 47px;
+  text-align: center;
+  border: 2px #f6f7f7 solid;
+  padding-top: 5px;
+}
+
+.header-sns-nav-link {
+  font-size: 20px;
+  color: #111111;  
+}
+/* SNSリンク */
+
+.header-right-area {
+  position: relative;
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  background-color: #111111;
+}
+
+/* ナビリンク(PC) */
+.header-nav-menus{
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-right: 5%;
+}
+
+.header-nav-link {
+  color: #fff;
+  font-family: Arial;
+  font-size: 12px;
+}
+
+.lists-humberger {
+  display: none;
+}
+/* ナビリンク(PC) */
+
+/* PCで表示しない要素 */
+.btn-humberger,
+.header-nav-menu-sp{
+  display: none;
+}
+/* PCで表示しない要素 */
+/* ヘッダー(PC) */
+
+/* topページスライダー  */
+.top {
+  margin-top: 50px;
+  position: relative;
+}
+
+.top-h1-area {
+  position: absolute;
+  z-index: 5;
+
+}
+
+.top-h1 {
+  font-size: 50px;
+  color: #fff;
+}
+
+/* topページ */
+.top-h1-area {
+  position: absolute;
+  font-size: 50px;
+  color: #fff;
+  z-index: 5;
+  margin-top: -40vw;
+  margin-left: 5%;
+}
+/* topページ */
+
+.top-h1:nth-child(2) {
+  font-size: 70px;
+}
+
+
+.slider_imgs {
+  width: 100%;
+} 
+/* topページスライダー  */
+
+/* aboutページ */
+.about {
+  position: relative;
+  display: flex;  
+}
+
+.about-background-left-outer {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  background-color: #f6f7f7;
+  margin-bottom: 25px;
+}
+
+.about-h1,
+.about-h2-outer,
+.about-explains-outer,
+.about-apply-btn {
+  margin-left: 10%;
+}
+
+.about-h1 {
+  margin-top: -25px;
+}
+
+.about-h2-outer,
+.about-explains-outer {
+  width: 70%;
+  margin-bottom: 25px;
+}
+
+.about-explain {
+  line-height: 24px;
+}
+
+.about-apply-btn {
+  margin-bottom: -50px;
+}
+
+.about-img-pc-outer {
+  align-items: center;
+}
+
+.about-img-pc-outer {
+  position: relative;
+  z-index: 1;
+  width: 60%;
+  margin: 50px 5% 0 0;
+}
+
+.about-main-img {
+  width: 100%;
+}
+
+.about-background-right-outer {
+  width: 52%;
+  height: 300px;
+  background-color: #f6f7f7;
+  position: absolute;
+  z-index: 0;
+  right: 0;
+  margin-top: 170px;  
+} 
+
+.about-img-sp-outer {
+  display: none;
+}
+/* aboutページ */
+
+
+/* serviceページ */
+.service {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  padding: 50px 0 50px 0;
+  background-color: #111111;
+}
+
+.service-h1 {
+  color: #fff;
+  margin-bottom: 25px;
+}
+
+.servic-btn-area {
+  display: flex;
+  width: 80%;
+}
+
+.service-flame {
+  position: relative;
+  align-items: center;
+  width: 25%;
+  padding: 50px;
+  border: #fff 0.5px solid;
+  color: #fff;
+  background-color: #111111;
+}
+
+.service-btn-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-items: center;
+}
+
+.servise-name {
+  font-family: DIN Condensed;
+  font-size: 25px;
+}
+
+.service-icons {
+  margin-bottom: 20px;
+}
+
+.servise-plice {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.view-more-link {
+  display: flex;
+}
+
+/* serviceボタンのアニメーション */
+
+/* ジャケットボタン */
+#jucket-service-btn::before, 
+#jucket-service-btn::after,
+.jucket-service-btn-outer::before,
+.jucket-service-btn-outer::after {
+  position: absolute;
+  z-index: 2;
+  content: '';
+  width: 0;
+  height: 0;
+  border: 1px solid transparent;
+  transition: all .3s;  
+}
+
+#jucket-service-btn::before {
+  top: -1px;
+  left: -1px;
+  border-left-color: #111111;  
+}
+
+#jucket-service-btn::after {
+  bottom: -1px;
+  right: -1px;
+  border-right-color: #111111;  
+}
+
+.jucket-service-btn-outer::before {
+  bottom: -1px;
+  left: -1px;
+  border-bottom-color: #111111;  
+}
+
+.jucket-service-btn-outer::after {
+  top: -1px;
+  right: -1px;
+  border-top-color: #111111;  
+}
+
+#jucket-service-btn:hover {
+  opacity: 0.9;
+  outline: 1px solid #FFFFFF;
+  outline-offset: -10px;
+  background-image: url(../img/service_btn_hover/jucket_img.png);
+}
+
+#jucket-service-btn:hover::before, 
+#jucket-service-btn:hover::after {
+  height: 100%;
+  visibility: visible;
+}
+
+.jucket-service-btn-outer:hover::before,
+.jucket-service-btn-outer:hover::after {
+  width: 100%;
+  visibility: visible;  
+}
+/* ジャケットボタン */
+
+/* シャツボタン */
+#shirts-service-btn::before, 
+#shirts-service-btn::after,
+.shirts-service-btn-outer::before,
+.shirts-service-btn-outer::after {
+  position: absolute;
+  z-index: 2;
+  content: '';
+  width: 0;
+  height: 0;
+  border: 1px solid transparent;
+  transition: all .3s;  
+}
+
+#shirts-service-btn::before {
+  top: -1px;
+  left: -1px;
+  border-left-color: #111111;  
+}
+
+#shirts-service-btn::after {
+  bottom: -1px;
+  right: -1px;
+  border-right-color: #111111;  
+}
+
+.shirts-service-btn-outer::before {
+  bottom: -1px;
+  left: -1px;
+  border-bottom-color: #111111;  
+}
+
+.shirts-service-btn-outer::after {
+  top: -1px;
+  right: -1px;
+  border-top-color: #111111;  
+}
+
+#shirts-service-btn:hover {
+  opacity: 0.9;
+  outline: 1px solid #FFFFFF;
+  outline-offset: -10px;
+  background-image: url(../img/service_btn_hover/shirts_img.png);
+}
+
+#shirts-service-btn:hover::before, 
+#shirts-service-btn:hover::after {
+  height: 100%;
+  visibility: visible;
+}
+
+.shirts-service-btn-outer:hover::before,
+.shirts-service-btn-outer:hover::after {
+  width: 100%;
+  visibility: visible;  
+}
+/* シャツボタン */
+
+/* ボトムボタン */
+#bottoms-service-btn::before, 
+#bottoms-service-btn::after,
+.bottoms-service-btn-outer::before,
+.bottoms-service-btn-outer::after {
+  position: absolute;
+  z-index: 2;
+  content: '';
+  width: 0;
+  height: 0;
+  border: 1px solid transparent;
+  transition: all .3s;  
+}
+
+#bottoms-service-btn::before {
+  top: -1px;
+  left: -1px;
+  border-left-color: #111111;  
+}
+
+#bottoms-service-btn::after {
+  bottom: -1px;
+  right: -1px;
+  border-right-color: #111111;  
+}
+
+.bottoms-service-btn-outer::before {
+  bottom: -1px;
+  left: -1px;
+  border-bottom-color: #111111;  
+}
+
+.bottoms-service-btn-outer::after {
+  top: -1px;
+  right: -1px;
+  border-top-color: #111111;  
+}
+
+#bottoms-service-btn:hover {
+  opacity: 0.9;
+  outline: 1px solid #FFFFFF;
+  outline-offset: -10px;
+  background-image: url(../img/service_btn_hover/bottoms_img.png);
+}
+
+#bottoms-service-btn:hover::before, 
+#bottoms-service-btn:hover::after {
+  height: 100%;
+  visibility: visible;
+}
+
+.bottoms-service-btn-outer:hover::before,
+.bottoms-service-btn-outer:hover::after {
+  width: 100%;
+  visibility: visible;  
+}
+/* ボトムボタン */
+
+/* アクセサリーボタン */
+#accesary-service-btn::before, 
+#accesary-service-btn::after,
+.accesary-service-btn-outer::before,
+.accesary-service-btn-outer::after {
+  position: absolute;
+  z-index: 2;
+  content: '';
+  width: 0;
+  height: 0;
+  border: 1px solid transparent;
+  transition: all .3s;  
+}
+
+#accesary-service-btn::before {
+  top: -1px;
+  left: -1px;
+  border-left-color: #111111;  
+}
+
+#accesary-service-btn::after {
+  bottom: -1px;
+  right: -1px;
+  border-right-color: #111111;  
+}
+
+.accesary-service-btn-outer::before {
+  bottom: -1px;
+  left: -1px;
+  border-bottom-color: #111111;  
+}
+
+.accesary-service-btn-outer::after {
+  top: -1px;
+  right: -1px;
+  border-top-color: #111111;  
+}
+
+#accesary-service-btn:hover {
+  opacity: 0.9;
+  outline: 1px solid #FFFFFF;
+  outline-offset: -10px;
+  background-image: url(../img/service_btn_hover/accesary_img.png);
+}
+
+#accesary-service-btn:hover::before, 
+#accesary-service-btn:hover::after {
+  height: 100%;
+  visibility: visible;
+}
+
+.accesary-service-btn-outer:hover::before,
+.accesary-service-btn-outer:hover::after {
+  width: 100%;
+  visibility: visible;  
+}
+/* アクセサリーボタン */
+
+/* serviceページ */
+
+/* review画面 */
+.review {
+  display: flex;
+}
+
+.review-main-area-outer {
+  width: 50%;
+  background-color: #f6f7f7;
+}
+
+.review-h1,
+.review-contents,
+.review-btn-area {
+  margin-left: 10%;
+}
+
+.review-h1 {
+  margin-bottom: 50px;
+  margin-top: -25px;
+}
+
+.review-explain-block {
+  margin-top: 25px;
+  margin-bottom: 20px;
+}
+
+.review-img-area-pc-outer {
+  display: flex;
+  width: 45%;
+}
+
+.review-btn-area {
+  display: flex;
+}
+
+.review-apply-btn {
+  margin-right: 5%;
+}
+
+
+.review-main-img-pc {
+  width: 100%;;
+}
+
+.review-main-img-info {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.date {
+  font-size: 10px;
+  margin: 7px 10px 0 0;
+}
+
+.review-detail-btn {
+  display: flex;
+  margin-top: 15px;
+  margin-left: auto;
+  border: none;
+  background-color: #fff;
+}
+
+.detail-btn-arrow {
+  margin: 5px 0 0 5px;
+}
+
+/* SP画面の画像 */
+.review-main-img-area-sp {
+  display: none;
+}
+
+/* モーダル */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 9;
+}
+
+/* footer */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  background-color: #111111;
+  padding: 30px 5%;
+}
+
+.footer p, li, a{
+  color: #fff;
+  font-size: 12px;
+}
+
+.footer-logo,.footer-address,.SNS-nav-link, 
+.relation-site{
+  margin-bottom: 20px;
+}
+
+.site-map {
+  margin-bottom: 10px;
+}
+
+.footer-block {
+  width: 20%;
+}
+
+.footer-apply-btn {
+  border: 1px solid #FFFFFF;
+  color: #fff;
+  background-color: #111111;
+  display: flex;
+  width: 100px;
+  padding: 5px;
+}
+
+.footer-btn-arrow {
+  margin: 5px 0 0 5px;
+}
+
+.SNS-nav-links {
+  display: flex;
+}
+
+.SNS-nav-link {
+  margin-right: 10%;
+}
+
+
+/* SP画面 */
+@media screen and (max-width: 611px) { 
+
+  /* 共通 */
+  .about-h1,
+  .service-h1,
+  .review-h1 {
+    font-size: 20px;
+  }
+
+  .header,
+  .about,
+  .top,
+  .service,
+  .review {
+    margin-bottom: 50px;
+  }  
+
+  h2 {
+    font-size: 15px;
+  }  
+
+  .explain {
+    font-size: 10px;
+  }  
+
+
+  .btn {
+    display: flex;
+    align-items: center;
+    background-color: #111111;
+    color: #fff;
+    height: 40px;
+    width: 150px;
+    border: none;
+  }
+
+  .btn span {
+    font-size: 12px;
+    margin: 0 20px;  
+  }
+  /* 共通 */
+
+  /* ヘッダー(SP) */
+  .logo-area {
+    margin-left: 5%;
+  }
+  
+  .header-sns-nav-menus {
+    display: none;
+  }
+
+  .header-nav-menus {
+    display: none;
+  }
+
+  .header-logo {
+    width: 55%;
+  }
+
+  /* ナビリンク(SP) */
+  .header-nav-menus_sp {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-nav-menu-sp {
+    display: block;
+    font-family: Arial;
+    font-size: 10px;
+    margin-right: 12%;
+  }  
+  /* ナビリンク(SP) */  
+
+  /* topページ */
+  .top-h1-area {
+    position: absolute;
+    color: #fff;
+    z-index: 5;
+    margin-top: -38vw;
+    margin-left: 5%;
+  }
+
+  .top-h1 {
+    font-size: 25px;
+    letter-spacing: 0.1em;
+  }
+
+  .top-h1:nth-child(2) {
+    font-size: 30px;
+  }  
+  /* topページ */
+
+  /* ハンバーガーボタン */
+  .btn-humberger {
+    display: block;
+    position: relative;
+    z-index: 100;
+    background: transparent;  
+    border: none;
+    font-size: 10px;
+    font-family: Arial;
+    color: #fff;   
+    margin-left: 10%; 
+  }
+
+  .btn-humberger > span {
+    width: 30px;
+    height: 2px;
+    background-color: #fff;
+    position: relative;   
+    transition: ease .4s;
+    display: block;
+  }
+
+  .btn-humberger span:nth-child(1) {
+    top: 0;
+  }
+
+  .btn-humberger span:nth-child(2), 
+  .btn-humberger-text {
+    margin: 5px 0 5px 0;
+  }
+
+  .btn-humberger span:nth-child(3) {
+    top: 0;
+  }  
+
+  .btn-humberger.humberger-is-Active > span:nth-child(1) {
+    top: 9px;
+    transform: rotate(45deg);    
+  }
+
+  .btn-humberger.humberger-is-Active > .btn-humberger-text,span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .btn-humberger.humberger-is-Active > span:nth-child(3) {
+    top: -15px;
+    transform: rotate(-45deg);    
+  }
+  /* ハンバーガーボタン */
+
+  /* ハンバーガーナビ */
+  .lists-humberger {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background:rgba(0,0,0,0.6);
+    padding: 100px 0 0 5%;
+  }
+
+  .humberger-block {
+    margin-bottom: 20px;
+  }
+
+  .h1-sp {
+    color: #fff;
+    margin-bottom: 20px;
+  }
+
+  .humberger-btn {
+    display: flex;
+    height: 30px;
+    width: 100px;
+    background-color: #111111;
+    color: #fff;
+    border: 1px solid #fff;
+  }
+
+  .humberger-btn a {
+    font-size: 12px;
+    line-height: 30px;
+  }
+
+  .register-btn-area-sp {
+    display: flex;
+  }
+
+  .h-register-btn-sp {
+    margin-right: 20px;
+  }
+
+  .hum-register-arrow {
+    margin: 10px 0 0 15px;
+  }
+
+  .hum-order-arrow {
+    margin: 10px 0 0 10px;
+  } 
+  
+  .sns-btn-area-sp {
+    display: flex;
+  }
+
+  .sns-btn {
+    width: 20px;
+    margin-right: 20px;
+  }
+
+  .humberger-sitemap-link {
+    margin-bottom: 10px;
+  }
+  /* ハンバーガーナビ */
+
+  /* クリック前 */
+  .lists-humberger {
+    transform: translateX(100vw);
+    transition: all .3s linear;    
+  }
+
+  /* クリック後 */
+  .lists-humberger.isOpened {
+    transform: translateX(0);    
+  }
+  /* ハンバーガーナビ */
+  /* ヘッダー(SP) */
+
+  /* aboutページ(SP) */
+  .about {
+    margin-top: 50px;
+  }
+
+  .about-h1,
+  .about-h2-outer,
+  .about-explains-outer,
+  .about-apply-btn {
+    margin-left: 5%;
+  }  
+
+  .about-h2-outer,
+  .about-explains-outer {
+    width: 90%;
+    margin-bottom: 15px;
+  }  
+
+  .about-h1 {
+    margin-top: -10px;
+  }  
+
+  .about-background-left-outer {
+    width: 95%;
+    margin-bottom: 15px;    
+  }
+
+  .about-explain {
+    line-height: 18px;
+  }
+
+  .about-apply-btn {
+    margin-bottom: -17px;
+  }
+
+  .about-img-pc-outer {
+    display: none;
+  }
+
+  .about-img-sp-outer {
+    display: block;
+  } 
+
+  .about-img-sp {
+    width: 95.5%;;
+    margin: 15px 0 15px 5%;
+    max-height: 210px;
+  }
+
+  .about-background-right-outer {
+    display: none;
+  }  
+  /* aboutページ(SP) */
+
+  /* serviceページ */
+  .service {
+    padding: 25px 0 50px 0 ;
+  }
+
+  .service-flame {
+    width: 50%;
+    padding: 0;
+  }
+
+  .servic-btn-area {
+    width: 90%;;
+    margin: 0 auto;    
+    display: flex;
+    display: -ms-flexbox;    
+    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+  }
+
+  .service-btn-inner {
+    padding: 25px;
+  }
+
+  .servise-name {
+    font-size: 15px
+  }
+
+  .servise-plice {
+    font-size: 10px;
+  } 
+
+  .view-more-link {
+    font-size: 10px;
+  }
+
+  /* review画面 */
+  .review-img-area-pc-outer {
+    display: none;
+  }
+
+  .review-main-area-outer {
+    width: 95%;
+  }
+
+  .review-h1 {
+    margin-top: -10px;
+    margin-bottom: 25px    
+  }
+
+  .review-main-img-area-sp {
+    display: block;
+    margin-bottom: 25px;
+  }
+
+  .review-main-img-sp {
+    width: 95%;
+    margin-left: 10%;
+  }
+
+  .detail-btn-arrow {
+    width: 30%;
+  }
+
+  .review-main-img-area-explain-sp {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+
+  .review-main-img-area-sp-outer {
+    display: flex;
+  }
+
+  .date {
+    margin: 7px 5px 0 0;
+  }
+
+  .san {
+    margin-top: 7px;
+  }
+
+  .review-detail-btn-sp {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    border: none;
+    background-color: #f6f7f7;
+    font-size: 12px;
+  }
+
+  .items-btn {
+    font-size: 12px;
+  }
+
+  /* footer */
+  .footer {
+    flex-direction: column;
+  }
+
+  .footer p, li, a{
+    color: #fff;
+    font-size: 10px;
+  }  
+
+  .footer-block {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .footer-logo-area {
+    display: flex;
+  }
+
+  .footer-logo {
+    width: 15%;
+    margin-top: 7px;
+  }
+
+  .footer-apply-btn {
+    height: 30px;
+    width: 80px;
+    margin-left: 10%;
+    font-size: 10px;
+  }
+
+  .footer-logo,.footer-address,.SNS-nav-link, 
+  .relation-site,.site-map,.footer-sns {
+    margin-bottom: 10px;
+  }  
+
+  .SNS-nav-link {
+    width: 1px;
+  }
+}
+/* SP画面 */
