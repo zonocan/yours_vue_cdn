@@ -504,7 +504,7 @@ const app = new Vue({
                 login_btn_label: 'ログイン',
                 login_btn_path: './img/footer_btn/btn.png',
                 order: '注文確認',
-                order_btn_label: 'MY ORDER',
+                order_btn_label: 'オーダー確認',
                 order_btn_path: './img/footer_btn/btn.png',
                 sns: 'SNS',
                 insta: './img/humbergerlist_icon/insta.png',
