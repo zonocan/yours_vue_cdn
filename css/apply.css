@@ -1,0 +1,121 @@
+@charset "UTF-8";
+input {
+    vertical-align: initial
+}
+
+.apply-form-tab {
+    background-color: #f6f7f7;   
+}
+
+.apply-form-area {
+    width: 100%;    
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.apply-h1 {
+    font-size: 45px;
+    margin: 50px 0 25px;
+}
+
+.apply-form-wraper {
+    border: 1px solid #111;
+    background-color: #fff;
+    padding: 25px 5%;
+    margin-bottom: 50px;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.apply-form-txt,
+.apply-pre-serect,
+.apply-other-txt-area {
+    width: 60%;
+}
+
+.needress {
+    background-color: #90000e;
+    color: #fff;
+    padding: 1px;
+}
+
+.apply-form-txt-address-number {
+    width: 25%;
+}
+
+.apply-kind-wraper {
+    flex-direction: column;
+}
+
+.apply-kind-tag {
+    margin-bottom: 10px;
+}
+
+.apply-img-wraper {
+    justify-content: left;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.apply-post-file-wrap {
+    border: 1px solid #111;
+    width: 150px;
+    height: 150px;
+    margin-left: 32%;
+    display: flex;
+    align-items: center;
+}
+
+.apply-file-icon {
+    margin: 0 auto;
+    font-size: 30px;
+}
+
+.apply-form-txt-address-number{
+    margin-bottom: 15px;
+}
+
+.address-search-btn {
+    color: #fff;
+    background-color: #111;
+    border: none;
+    width: 100px;
+}
+
+@media screen and (max-width: 611px) {
+  
+.apply-h1 {
+    font-size: 25px;
+}  
+
+label {
+    font-size: 10px;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    flex-direction: column;
+}
+
+.apply-form-txt,
+.apply-pre-serect,
+.apply-other-txt-area{
+    width: 100%;
+}
+
+.apply-post-file-wrap {
+    margin-left: 0;
+}
+
+.address-search-btn {
+    width: 100px;
+}
+
+}

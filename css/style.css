@@ -5,6 +5,17 @@ h1 {
   font-family: DIN Condensed;
 }
 
+/* 1月31日追加 */
+a{
+  display: block;
+}
+
+/* 1月31日追加 */
+.tab {
+  margin-top: 50px;
+  min-height: 100vh;
+}
+
 .about-h1,
 .service-h1,
 .review-h1 {
@@ -125,7 +136,6 @@ h2 {
 
 /* topページスライダー  */
 .top {
-  margin-top: 50px;
   position: relative;
 }
 
@@ -140,7 +150,6 @@ h2 {
   color: #fff;
 }
 
-/* topページ */
 .top-h1-area {
   position: absolute;
   font-size: 50px;
@@ -149,12 +158,10 @@ h2 {
   margin-top: -40vw;
   margin-left: 5%;
 }
-/* topページ */
 
 .top-h1:nth-child(2) {
   font-size: 70px;
 }
-
 
 .slider_imgs {
   width: 100%;
@@ -555,6 +562,10 @@ h2 {
   width: 45%;
 }
 
+.review-main-img-area-pc {
+  margin-right: 5%;
+}
+
 .review-btn-area {
   display: flex;
 }
@@ -568,9 +579,19 @@ h2 {
   width: 100%;;
 }
 
+.review-info-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
 .review-main-img-info {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.initial-wrap {
+  display: flex;
 }
 
 .date {
@@ -578,10 +599,13 @@ h2 {
   margin: 7px 10px 0 0;
 }
 
-.review-detail-btn {
+.price-info {
   display: flex;
-  margin-top: 15px;
-  margin-left: auto;
+  margin-top: 20px;
+}
+
+.like-btn {
+  display: flex;
   border: none;
   background-color: #fff;
 }
@@ -612,6 +636,7 @@ h2 {
   justify-content: space-between;
   background-color: #111111;
   padding: 30px 5%;
+  margin-top: auto;
 }
 
 .footer p, li, a{
@@ -847,7 +872,7 @@ h2 {
   }
 
   .hum-order-arrow {
-    margin: 10px 0 0 4px;
+    margin: 10px 0 0 8px;
   } 
   
   .sns-btn-area-sp {
@@ -990,14 +1015,11 @@ h2 {
     margin-left: 10%;
   }
 
-  .detail-btn-arrow {
-    width: 30%;
-  }
-
   .review-main-img-area-explain-sp {
+    width: 100%;
     display: flex;
-    justify-content: flex-end;
-    margin-bottom: 10px;
+    flex-direction: column;
+    align-items: flex-end;
   }
 
   .review-main-img-area-sp-outer {
@@ -1009,20 +1031,33 @@ h2 {
   }
 
   .san {
-    margin-top: 7px;
+    margin-top: 5px;
   }
 
-  .review-detail-btn-sp {
-    width: 100%;
+  .item-name,
+  .initial,
+  .price,
+  .like-btn-img {
+    font-size: 15px;
+    margin-bottom: 5px;
+  }
+
+  .price-wrap {
     display: flex;
     justify-content: flex-end;
-    border: none;
-    background-color: #f6f7f7;
-    font-size: 12px;
   }
 
-  .items-btn {
-    font-size: 12px;
+  .price {
+    margin-right: 5px;
+  }
+
+  .like-btn-sp {
+    border: none;
+    background-color: #f6f7f7;
+  }
+
+  .like-btn-img {
+    width: 15px;
   }
 
   /* footer */

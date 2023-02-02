@@ -1,3 +1,4 @@
+// header
 // ハンバーガーメニュー
 const humbergerLists = Vue.component('humbergerlists', {
     props: {
@@ -134,7 +135,9 @@ const humbergerLists = Vue.component('humbergerlists', {
     `
 
 });
+// header
 
+// index
 // TOPページ
 const topH1 = Vue.component('toph1', {
     props: {
@@ -260,6 +263,14 @@ const reviewMainimgareaSp = Vue.component('reviewmainimgareasp', {
             type: String,
             default: ''
         },
+        item_name: {
+            type: String,
+            default: ''            
+        },
+        price: {
+            type: String,
+            default: ''
+        }, 
         btn_id: {
             type: String,
             default: ''               
@@ -277,17 +288,24 @@ const reviewMainimgareaSp = Vue.component('reviewmainimgareasp', {
              @click="$emit('clickopenmodal($event)')"             
              class="review-main-img-sp">
         <div class="review-main-img-area-explain-sp">
-            <p class="date explain">{{ date }}</p>
-            <p class="initial">{{ initial }}</p>
-            <p class="san explain">さん</p>
+            <div class="initial-wrap">
+                <p class="date explain">{{ date }}</p>
+                <p class="initial">{{ initial }}</p>
+                <p class="san explain">さん</p>
+            </div>
+            <div class="item-wrap">
+                <p class="item-name">{{ item_name }}</p>            
+            </div>
         </div>
-        <button 
-            class="review-detail-btn-sp" 
-            :id="btn_id"
-            @click="$emit('clickopenmodal($event)')">
-            拡大表示で見る
-            <img :src="btn_path" class="detail-btn-arrow">
-        </button>
+        <div class="price-wrap">
+            <p class="price">{{ price }}</p>
+            <button 
+                class="like-btn-sp" 
+                :id="btn_id"
+                @click="$emit">
+                <img :src="btn_path" class="like-btn-img">
+            </button>
+        </div>
     </div>
     `
 });
@@ -352,6 +370,14 @@ const reviewMainimgareaPc = Vue.component('reviewmainimgareapc',{
             type: String,
             default: ''
         },
+        item_name: {
+            type: String,
+            default: ''            
+        },
+        price: {
+            type: String,
+            default: ''
+        }, 
         btn_id: {
             type: String,
             default: ''
@@ -370,23 +396,35 @@ const reviewMainimgareaPc = Vue.component('reviewmainimgareapc',{
              :id="img_id"
              @click="$emit('clickopenmodal($event)')"              
              class="review-main-img-pc">
-            <div class="review-main-img-info">
-                <p class="date">{{ date }}</p>
-                <p class="initial">{{ initial }}</p>
-                <p class="san">さん</p>
-            </div>
-            <button
-             class="review-detail-btn" 
-             :id="btn_id"
-             @click="$emit('clickopenmodal($event)')">
-                拡大表示で見る
-                <img :src="btn_path" class="detail-btn-arrow">                
-            </button>            
+            <div class="review-info-wrap"> 
+                <div class="review-main-img-info">
+                    <div class="initial-wrap">
+                        <p class="date">{{ date }}</p>
+                        <p class="initial">{{ initial }}</p>
+                        <p class="san">さん</p>
+                    </div>
+                    <div class="item-name-wrap">
+                        <p class="item-name">{{ item_name }}</p>
+                    </div>
+                </div>
+                <div class="price-info">
+                    <p class="price">
+                        <span>¥</span>
+                        {{ price }}
+                    </p>
+                    <button
+                    class="like-btn" 
+                    :id="btn_id"
+                    @click="$emit">
+                        <img :src="btn_path" class="detail-btn-arrow">                
+                    </button>
+                </div>  
+            </div>          
         </div>
     </div>
     `
 });
-// reviewの画面
+
 
 // モーダル
 const modal = Vue.component('modal', {
@@ -441,15 +479,23 @@ const modal = Vue.component('modal', {
 
 // swiperの読み込み
 Vue.use(VueAwesomeSwiper);
-// swiperの読み込み
+// index
+
+// apply
+
+
+// apply
 
 const app = new Vue({
     el: '#app',
     components: {
         'carousel': VueCarousel.Carousel,
         'slide': VueCarousel.Slide,
-        'toph1' : topH1,
+        // header
         'humbergerlists' : humbergerLists,
+        // header
+        // index
+        'toph1' : topH1,
         'applybtn': applyBtn,
         'servicebtn' : serviceBtn,
         'itemsbtn' : itemsBtn,
@@ -459,6 +505,7 @@ const app = new Vue({
         'reviewcontent2' : reviewContent2,
         'reviewmainimgareapc' : reviewMainimgareaPc,
         'modal' : modal,
+        // index
     },
     data(){
         return{
@@ -470,28 +517,31 @@ const app = new Vue({
             //headerのサイトマップナビゲーション(PC)
             header_nav_menus: [{
                 label: 'TOP',
-                path: './index.html'
+                tab_class: 'index' 
             },{
                 label: 'APPLY',
-                path: './index.html'            
+                tab_class: 'apply'           
             },{
                 label: 'LOGIN',
-                path: './index.html'
+                tab_class: 'login'
             },{
                 label: 'ITEMS',
-                path: './index.html'
+                tab_class: 'items'
             },{
                 label: 'MY ORDER',
-                path: './index.html'
+                tab_class: 'my-order'
             }],
+
+            // タブの切り替え
+            tab_active: 0,
             
             //headerのサイトマップナビゲーション(SP)
             header_nav_menus_sp: [{
                 label: 'APPLY',
-                path: './index.html'                   
+                tab: './index.html'                   
             },{
                 label: 'ITEMS',
-                path: './index.html'                
+                tab: './index.html'                
             }],
 
             //ハンバーガーメニューの実装
@@ -516,10 +566,11 @@ const app = new Vue({
                 label_login: 'LOGIN',
                 label_items: 'ITEMS',
                 label_myorder: 'MY ORDER'
-            }],            
+            }],  
             // headder
 
-            // applyボタン
+            // index
+
             // arrowの画像パス
             btn_arrow_path: './img/btn_arrow/btn_arrow.png',
 
@@ -645,15 +696,19 @@ const app = new Vue({
                 img_path: './img/phone_main_img/review_img_1.png',
                 date: '2022.07.08',
                 initial: 'K.H',
+                item_name: 'Denim Taired Jackt',
+                price: '7,500',      
                 btn_id: 'review-detail-btn-1',
-                btn_path: './img/review_arrow/sp_arrow.png'
+                btn_path: './img/like_img/like_sp.png'
             },{
                 img_id: 'review-img-2',
                 img_path: './img/phone_main_img/review_img_2.png',
                 date: '2022.08.07',
-                initial: 'I.S',                                             
+                initial: 'I.S',  
+                item_name: 'Music Jackt',
+                price: '22,500',                                                 
                 btn_id: 'review-detail-btn-2',
-                btn_path: './img/review_arrow/sp_arrow.png',   
+                btn_path: './img/like_img/like_sp.png',   
             }],
 
             // reviewのh2
@@ -689,16 +744,20 @@ const app = new Vue({
                 img_id: 'review-img-1',
                 img_path: './img/display_img/display_img_2.png',
                 date: '2022.07.08',
-                initial: 'K.H',                
-                btn_id: 'review-detail-btn-1',
-                btn_path: './img/review_arrow/pc_arrow.png'
+                initial: 'K.H', 
+                item_name: 'Denim Taired Jackt',
+                price: '7,500',               
+                btn_id: 'like-btn-1',
+                btn_path: './img/like_img/like.png'
             },{
                 img_id: 'review-img-2',
                 img_path: './img/display_img/display_img_3.png',
                 date: '2022.08.07',
-                initial: 'I.S',                    
-                btn_id: 'review-detail-btn-2',
-                btn_path: './img/review_arrow/pc_arrow.png'                
+                initial: 'I.S', 
+                item_name: 'Music Jackt',
+                price: '22,500',                   
+                btn_id: 'like-btn-2',
+                btn_path: './img/like_img/like.png'                
             }],
             // review画面
 
@@ -708,10 +767,171 @@ const app = new Vue({
             //モーダル(商品情報)
             displayList: '',
 
-            // 
+            // index 
+
+            // apply
+            apply_h1: 'お申し込みフォーム',
+
+            // formのデータ
+            apply_name: '',
+
+            apply_email: '',
+
+            apply_tel: '',
+
+            apply_kind: '',
+
+            apply_img: '',
+
+            apply_address_number: '',
+
+            apply_pre: '',
+
+            apply_address: '',
+
+            apply_other: '',
+            
+            // formのタグ
+            apply_name_tag: '氏名',
+
+            apply_email_tag: 'メールアドレス',
+
+            apply_tel_tag: '電話番号',
+
+            apply_kind_tag: '商品の種類',
+
+            apply_img_tag: '画像',
+
+            apply_address_number_tag: '郵便番号',
+
+            apply_pre_tag: '都道府県',
+                
+            apply_address_tag: '郵送先',
+
+            apply_other_tag: 'その他',
+            
+            apply_span_need: '※',
+
+            //ラジオボックス
+            apply_kind_radio: [{
+                name: 'apply_jacket',
+                kind: 'JACKET',
+                v_model: 'apply_kind'
+            },{
+                name: 'apply_shirts',
+                kind: 'SHIRTS',
+                v_model: 'apply_kind'
+            },{
+                name: 'apply_bottoms',
+                kind: 'BOTTOMS',
+                v_model: 'apply_kind'
+            },{
+                name: 'apply_accesarry',
+                kind: 'ACCESARRY',
+                v_model: 'apply_kind'                
+            }],
+
+            // 住所のサーチボタン
+            apply_search_btn_label: '住所を入力',
+
+            // serectboxの一覧
+            apply_select_option_pre: [{
+                pre: '北海道'
+            },{
+                pre: '青森県'
+            },{
+                pre: '秋田県'
+            },{
+                pre: '岩手県'
+            },{
+                pre: '山形県'
+            },{
+                pre: '宮城県'
+            },{
+                pre: '福島県'
+            },{
+                pre: '茨城県'
+            },{
+                pre: '栃木県'
+            },{
+                pre: '群馬県'
+            },{
+                pre: '埼玉県'
+            },{
+                pre: '東京都'
+            },{
+                pre: '千葉県'
+            },{
+                pre: '神奈川県'
+            },{
+                pre: '新潟県'
+            },{
+                pre: '富山県'
+            },{
+                pre: '石川県'
+            },{
+                pre: '福井県'
+            },{
+                pre: '長野県'
+            },{
+                pre: '山梨県'
+            },{
+                pre: '静岡県'
+            },{
+                pre: '愛知県'
+            },{
+                pre: '岐阜県'
+            },{
+                pre: '三重県'
+            },{
+                pre: '京都府'
+            },{
+                pre: '大阪府'
+            },{
+                pre: '滋賀県'
+            },{
+                pre: '和歌山県'
+            },{
+                pre: '奈良県'
+            },{
+                pre: '兵庫県'
+            },{
+                pre: '香川県'
+            },{
+                pre: '徳島県'
+            },{
+                pre: '愛媛県'
+            },{
+                pre: '高知県'
+            },{
+                pre: '岡山県'
+            },{
+                pre: '広島県'
+            },{
+                pre: '島根県'
+            },{
+                pre: '鳥取県'
+            },{
+                pre: '山口県'
+            },{
+                pre: '福岡県'
+            },{
+                pre: '佐賀県'
+            },{
+                pre: '長崎県'
+            },{
+                pre: '宮崎県'
+            },{
+                pre: '熊本県'
+            },{
+                pre: '鹿児島県'
+            },{
+                pre: '沖縄県'
+            }],
+            
+            // apply
 
             // footer
-
             footer_logo_path: './img/logo/logo_footer.png',
 
             site_map: 'サイトマップ',
@@ -754,15 +974,22 @@ const app = new Vue({
             
 
         };    
-        // モーダル    
     },
     methods: {
+
+        // header
+        // タブの切り替え(PC)
+        activate: function(i) {
+            this.tab_active = i;
+        },
 
         //ハンバーガーメニューの切り替え
         humbergerButton() {
             this.humbergerisActive = !this.humbergerisActive;
         },
+        // header
 
+        // index
         // モーダルの表示リスト
         onDisplayList(item_lists) {
             this.setDisplayList(item_lists);
@@ -783,6 +1010,7 @@ const app = new Vue({
         setDisplayList (item_lists) {
             this.displayList = item_lists;
         },
+        // index
 
     }
 });
