@@ -285,7 +285,7 @@ const reviewMainimgareaSp = Vue.component('reviewmainimgareasp', {
         <img :src="img_path" 
              alt="レビュー画面の画像" 
              :id="img_id" 
-             @click="$emit('clickopenmodal($event)')"             
+             @click="$emit('clickopenmodal')"             
              class="review-main-img-sp">
         <div class="review-main-img-area-explain-sp">
             <div class="initial-wrap">
@@ -394,7 +394,7 @@ const reviewMainimgareaPc = Vue.component('reviewmainimgareapc',{
              :src="img_path"
              alt="レビュー画面のメイン写真"
              :id="img_id"
-             @click="$emit('clickopenmodal($event)')"              
+             @click="$emit('clickopenmodal')"              
              class="review-main-img-pc">
             <div class="review-info-wrap"> 
                 <div class="review-main-img-info">
@@ -433,46 +433,19 @@ const modal = Vue.component('modal', {
             type: Boolean,
             default: false
         },
-        id: {
-            type: String,
-            default: ''  
-        },
-        initial: {
-            type: String,
-            default: ''  
-        },
-        date: {
-            type: String,
-            default: ''  
-        },
-        slider_img_path: {
-            type: String,
-            default: ''              
-        },
-        item: {
-            type: String,
-            default: ''                 
-        },
-        like_btn_path: {
-            type: String,
-            default: ''   
-        },
-        price: {
-            type: String,
-            default: ''  
-        },
-        explain_list: {
+        imagePath: {
             type: String,
             default: ''              
         }
 
+
     },
     template: `<div
-                    v-if="isShown"
-                    class="modal"
-                    :id="id.displayList"
-                    >
-
+                v-if="isShown"
+                class="modal"
+                @click="$emit('close')"
+                >
+                    <img class="modal-img" :src="imagePath">
                 </div>
                 `
 });
@@ -482,8 +455,15 @@ Vue.use(VueAwesomeSwiper);
 // index
 
 // apply
-
-
+// バリデーション
+const applyValidate = Vue.component('applyvalidate', {
+    props: ['applyerrors'],
+    template: `
+        <div class="apply-errors" v-if="applyerrors">
+            <p class="apply-error" v-for="applyerror in applyerrors">{{ applyerror }}</p>
+        </div>
+    `
+});
 // apply
 
 const app = new Vue({
@@ -506,6 +486,8 @@ const app = new Vue({
         'reviewmainimgareapc' : reviewMainimgareaPc,
         'modal' : modal,
         // index
+        // apply
+        'applyvalidate' : applyValidate,
     },
     data(){
         return{
@@ -534,9 +516,14 @@ const app = new Vue({
 
             // タブの切り替え
             tab_active: 0,
+
+            sp_tab_active: 0,
             
             //headerのサイトマップナビゲーション(SP)
             header_nav_menus_sp: [{
+                label: 'TOP',
+                tab: './index.html'                   
+            },{
                 label: 'APPLY',
                 tab: './index.html'                   
             },{
@@ -765,7 +752,7 @@ const app = new Vue({
             isShown: false,
 
             //モーダル(商品情報)
-            displayList: '',
+            displayImgPath: '',
 
             // index 
 
@@ -790,6 +777,29 @@ const app = new Vue({
             apply_address: '',
 
             apply_other: '',
+
+            // エラー
+            apply_errors:{
+
+                apply_name: [],
+
+                apply_email: [],
+    
+                apply_tel: [],
+    
+                apply_kind: [],
+    
+                apply_img: [],
+    
+                apply_address_number: [],
+    
+                apply_pre: [],
+    
+                apply_address: [],
+    
+                apply_other: [],
+
+            },
             
             // formのタグ
             apply_name_tag: '氏名',
@@ -811,6 +821,9 @@ const app = new Vue({
             apply_other_tag: 'その他',
             
             apply_span_need: '※',
+
+            // 画像のアップロード
+            apply_img_url: '',
 
             //ラジオボックス
             apply_kind_radio: [{
@@ -836,6 +849,8 @@ const app = new Vue({
 
             // serectboxの一覧
             apply_select_option_pre: [{
+                pre: ''
+            },{
                 pre: '北海道'
             },{
                 pre: '青森県'
@@ -983,6 +998,10 @@ const app = new Vue({
             this.tab_active = i;
         },
 
+        spActive: function(i) {
+            this.sp_tab_active = i;
+        },
+
         //ハンバーガーメニューの切り替え
         humbergerButton() {
             this.humbergerisActive = !this.humbergerisActive;
@@ -990,10 +1009,6 @@ const app = new Vue({
         // header
 
         // index
-        // モーダルの表示リスト
-        onDisplayList(item_lists) {
-            this.setDisplayList(item_lists);
-        },
 
         //モーダルの非表示 
         closeModal() {
@@ -1003,14 +1018,84 @@ const app = new Vue({
        //モーダルの表示 
         openModal() {
             this.isShown = true;  
-            this. onDisplayList(); 
-        },      
-
-        // displayリストの設定
-        setDisplayList (item_lists) {
-            this.displayList = item_lists;
+        },    
+        
+        onDisplayImg(path) {
+            this.setImage(path);
+            this.openModal();
+        },
+         
+        setImage(path) {
+            this.displayImgPath = path;
         },
         // index
+
+        // apply
+        // 住所検索
+        displayAddres: function() {
+            var self = this;
+            new YubinBango.Core(this.apply_address_number,function(addr){
+                if(addr.region_id){
+                    self.apply_pre = addr.region;
+                    self.apply_address = addr.locality + addr.street;
+                }else {
+                    self.apply_errors.apply_address_number.push('該当する住所がありません');
+                }
+            })
+        },
+
+        // バリデーション
+        applyValidate: function() {
+            var apply_errors = {
+                apply_name: [],
+
+                apply_email: [],
+    
+                apply_tel: [],
+    
+                apply_kind: [],
+    
+                apply_img: [],
+    
+                apply_address_number: [],
+    
+                apply_pre: [],
+    
+                apply_address: [],
+    
+                apply_other: [],                
+            };
+
+            if(!this.apply_name) {
+                apply_errors.apply_name.push('この項目は必須です');
+            }else if(this.apply_name.lengh > 20) {
+                apply_errors.apply_name.push('20文字以内で入力して下さい');
+            }
+
+            if(!this.apply_email) {
+                apply_errors.apply_email.push('この項目は必須です');
+            }
+            if(!this.apply_kind) {
+                apply_errors.apply_kind.push('この項目は必須です');
+            }
+            if(!this.apply_address_number) {
+                apply_errors.apply_address_number.push('この項目は必須です');
+            }
+            if(!this.apply_pre) {
+                apply_errors.apply_pre.push('この項目は必須です');
+            }
+            if(!this.apply_address) {
+                apply_errors.apply_address.push('この項目は必須です');
+            }
+            this.apply_errors = apply_errors;
+        },
+
+        // 画像のセット
+        applyUploadFile() {
+            const file = this.$refs.preview.files[0];
+            this.apply_img_url = URL.createObjectURL(file);
+        },
+        // apply
 
     }
 });

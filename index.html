@@ -49,7 +49,7 @@
             v-for="(menu, i) in header_nav_menus"
             :key="i"
             class="header-nav-menu"
-            :class="{ tab_active:tab_active === i }"
+            :class="{ tab_active : tab_active === i }"
             >
             <a href="#"
                class="header-nav-link"
@@ -62,8 +62,11 @@
           <li
             v-for="(menu, i) in header_nav_menus_sp"
             :key="i"
-            class="header-nav-menu-sp">
-            <a :href="menu.tab" class="header-nav-link">{{ menu.label }}</a>          
+            class="header-nav-menu-sp"
+            :class="{ sp_tab_active : sp_tab_active === i }">
+            <a href="#" 
+               class="header-nav-link"
+               @click.prevent="spActive(i)">{{ menu.label }}</a>          
           </li>
         </ul>
         <!-- headerのハンバーガーボタン(SP) -->
@@ -109,8 +112,9 @@
     </div>
     <!-- ハンバーガーナビ(SP) -->
 
+    <!-- PC時にヘッダーから呼び出される画面 -->
     <!-- メイン画面 -->
-    <div class="index tab"
+    <div class="index tab-pc"
           v-show="tab_active === 0">   
 
       <!-- topページスライダー -->
@@ -200,7 +204,7 @@
               :price="menu.price"
               :btn_id="menu.btn_id"
               :btn_path="menu.btn_path"
-              @clickopenmodal($event)="openModal"
+              @clickopenmodal="onDisplayImg(menu.img_path)"
               >
             </reviewmainimgareasp>
           </div>
@@ -248,7 +252,7 @@
               :price ="menu.price"
               :btn_id="menu.btn_id"
               :btn_path="menu.btn_path"
-              @clickopenmodal($event)="openModal"
+              @clickopenmodal="onDisplayImg(menu.img_path)"
               >
           </reviewmainimgareapc>      
         </div>
@@ -258,6 +262,8 @@
       <transition name="fade">
         <modal 
           :is-shown="isShown"
+          :image-path="displayImgPath"
+          @close="closeModal()" 
           >
         </modal>
       </transition>
@@ -265,7 +271,7 @@
     </div>
 
     <!-- form画面(apply) -->
-    <div class="apply-form-tab tab"
+    <div class="apply-form-tab tab-pc"
          v-show="tab_active === 1">
       <div class="apply-form-area">
         <h1 class="h1 apply-h1">{{ apply_h1 }}</h1>
@@ -278,6 +284,7 @@
               </label>
               <input type="text" name="apply_name" id="apply-name" v-model="apply_name" class="apply-form-txt">
             </div>
+            <applyvalidate :applyerrors="apply_errors.apply_name"></applyvalidate>
 
             <div class="apply-email-wraper form-group">
               <label for="apply_email" class="apply-email-tag apply-tag">{{ apply_email_tag }}
@@ -285,6 +292,7 @@
               </label>
               <input type="text" name="apply_email" id="apply-email" v-model="apply_email" class="apply-form-txt">
             </div>
+            <applyvalidate :applyerrors="apply_errors.apply_email"></applyvalidate>
 
             <div class="apply-tel-wraper form-group">
               <label for="apply_tel" class="apply-tel-tag apply-tag">{{ apply_tel_tag }}</label>
@@ -309,6 +317,7 @@
                 </label>
               </div>
             </div>
+            <applyvalidate :applyerrors="apply_errors.apply_kind"></applyvalidate>
 
             <div class="apply-img-wraper form-group">
               <label for="apply_img" class="apply-img-tag apply-tag">{{ apply_img_tag }}</label> 
@@ -316,8 +325,11 @@
                 <div class="apply-file-icon">
                   <i class="fa-solid fa-plus"></i>
                 </div>
-                <input type="file" name="apply_img" id="apply-img"  accept="image/*" multiple="multiple">
-              </label>            
+                <input type="file" name="apply_img" id="apply-img"  accept="image/*" ref="preview" multiple="multiple" @change="applyUploadFile">
+                <div v-if="apply_img_url" class="apply-display-img">
+                  <img :src="apply_img_url">
+                </div>  
+              </label>          
             </div>
 
             <div class="apply-address-number-wraper form-group">
@@ -325,14 +337,16 @@
                 <span class="needress">{{ apply_span_need }}</span>
               </label>
               <input type="text" name="apply_address_number" id="apply-address-number" v-model="apply_address_number" class="apply-form-txt apply-form-txt-address-number">
-              <button class="address-search-btn">{{ apply_search_btn_label }}</button>              
+              <button class="address-search-btn"
+                      @click.prevent="displayAddres">{{ apply_search_btn_label }}</button>              
             </div>
+            <applyvalidate :applyerrors="apply_errors.apply_address_number"></applyvalidate>
 
             <div class="apply-pre-wraper form-group">
               <label for="apply_pre_tag" class="apply-pre-tag apply-tag">{{ apply_pre_tag }}
                 <span class="needress">{{ apply_span_need }}</span>
               </label>
-              <select name="apply_pre" id="apply-pre" class="apply-pre-serect">
+              <select name="apply_pre" id="apply-pre" class="apply-pre-serect" v-model="apply_pre">
                 <option value=""
                         v-for="(menu,i) in apply_select_option_pre"
                         :key="i">
@@ -340,6 +354,7 @@
                 </option>
               </select>              
             </div>
+            <applyvalidate :applyerrors="apply_errors.apply_pre"></applyvalidate>
 
             <div class="apply-address-wraper form-group">
               <label for="apply-address-tag" class="apply-address-tag apply-tag">{{ apply_address_tag }}
@@ -347,10 +362,19 @@
               </label>  
               <input type="text" name="apply_address" id="apply-address" v-model="apply_address" class="apply-form-txt">            
             </div>
+            <applyvalidate :applyerrors="apply_errors.apply_address"></applyvalidate>   
 
             <div class="apply-other-wraper form-group">
               <label for="apply_other" class="apply-other-tag apply-tag">{{ apply_other_tag }}</label>  
               <textarea name="apply_other" id="apply-other" class="apply-other-txt-area" cols="30" rows="10" v-model="apply_other"></textarea>
+            </div>
+
+            <div class="apply-form-btn-area">
+              <input 
+                    type="submit" 
+                    class="apply-submit-btn submit-btn" 
+                    value="確認画面へ"
+                    @click.prevent="applyValidate">
             </div>
 
           </form>
@@ -359,19 +383,293 @@
     </div>
 
     <!-- ログイン画面 -->
-    <div class="login-form tab"
+    <div class="login-form tab-pc"
           v-show="tab_active === 2">
     </div>
 
     <!-- 商品一覧(item)画面 -->
-    <div class="items tab"
+    <div class="items tab-pc"
          v-show="tab_active === 3">
     </div>
 
     <!-- 注文確認画面 -->
-    <div class="my-order tab"
+    <div class="my-order tab-pc"
          v-show="tab_active === 4">
     </div>
+     <!-- PC時にヘッダーから呼び出される画面 -->  
+
+    <!-- SP時にヘッダーから呼び出される画面 -->
+    <div class="index tab-sp"
+         v-show="sp_tab_active === 0">   
+
+      <!-- topページスライダー -->
+      <div class="top">
+        <swiper :options="swiperOptions">
+          <swiper-slide
+            v-for="(menu, i) in slider_img_list"
+            :key="i"
+            class="slider_img_list">
+            <img :src="menu.path" alt="" class="slider_imgs">
+          </swiper-slide>              
+        </swiper>
+        <div class="top-h1-area">
+          <toph1
+            v-for="(menu, i) in top_h1"
+            :key="i"
+            :h1="menu.h1">
+          </toph1>
+        </div>
+      </div>
+
+      <!-- aboutページ -->
+      <div class="about">
+        <div class="about-background-left-outer">
+          <h1 class="about-h1">{{ about_h1 }}</h1>
+          <!-- aboutの写真(sp) -->
+          <div class="about-img-sp-outer">
+            <img :src="about_img_path_sp" alt="about画面の写真" class="about-img-sp">
+          </div>
+          <!-- aboutの写真(sp) -->        
+          <div class="about-h2-outer">
+            <h2
+            v-for="(menu, i) in about_h2"
+            :key="i"
+            class="about-h2">{{ menu.h2 }}</h2>
+          </div>
+          <div class="about-explains-outer">
+            <p
+            v-for="(menu, i) in about_explains"
+            :key="i"
+            class="explain about-explain">{{ menu.explain }}</p>
+          </div>
+          <applybtn 
+            :path="btn_arrow_path"
+            class="about-apply-btn"></applybtn>
+        </div>
+        <div class="about-img-pc-outer">
+          <img :src="about_img_path_pc" alt="aboutの写真" class="about-main-img">
+        </div>
+        <div class="about-background-right-outer"></div>
+      </div> 
+
+      <!-- serviceページ -->
+      <div class="service">
+        <h1 class="service-h1">{{ service_h1 }}</h1>
+        <div class="servic-btn-area">
+          <servicebtn
+            v-for="(menu, i) in service_btn_contens"
+            :key="i"
+            :id="menu.id"
+            :span_outer_class="menu.span_outer_class"
+            :span_inner_class="menu.span_inner_class"
+            :service_icons_path="menu.service_icons_path"
+            :service_name="menu.service_name"
+            :servise_plice="menu.servise_plice"
+            :view_more="menu.view_more"
+            :view_arrow_1_path="menu.view_arrow_1_path"
+            :view_arrow_2_path="menu.view_arrow_2_path">
+          </servicebtn>
+        </div>
+      </div>
+
+      <!-- reviewページ -->
+      <div class="review">
+        <div class="review-main-area-outer">
+          <h1 class="review-h1">{{ review_h1 }}</h1>
+          <!-- SPメイン写真 -->
+          <div class="review-main-img-area-sp-outer">
+            <reviewmainimgareasp
+              v-for="(menu, i) in review_main_img_list_sp"
+              :key="i"
+              :img_id="menu.img_id"
+              :img_path="menu.img_path"
+              :date="menu.date"
+              :initial="menu.initial"
+              :item_name="menu.item_name"
+              :price="menu.price"
+              :btn_id="menu.btn_id"
+              :btn_path="menu.btn_path"
+              @clickopenmodal="onDisplayImg(menu.img_path)"
+              >
+            </reviewmainimgareasp>
+          </div>
+          <!-- reviewの詳細 -->
+          <div class="review-contents">
+            <reviewh2
+              v-for="(menu, i) in review_h2"
+              :key="i"
+              :review_h2="menu.h2">
+            </reviewh2>
+          <div class="review-explain-block">
+            <reviewcontent1
+              v-for="(menu, i) in review_explains_list_1"
+              :key="i"
+              :review_explains_list_1="menu.explain">
+            </reviewcontent1>
+          </div>
+          <div class="review-explain-block">
+            <reviewcontent2
+              v-for="(menu, i) in review_explains_list_2"
+              :key="i"
+              :review_explains_list_2="menu.explain">
+            </reviewcontent2>
+          </div>  
+          </div>
+          <div class="review-btn-area">
+            <applybtn 
+              :path="btn_arrow_path"
+              class="review-apply-btn">
+            </applybtn>          
+            <itemsbtn
+              :path="btn_arrow_path">
+            </itemsbtn>
+          </div>
+        </div>
+        <div class="review-img-area-pc-outer">
+          <reviewmainimgareapc
+              v-for="(menu, i) in review_main_img_area_pc"
+              :key="i"
+              :img_id="menu.img_id"
+              :img_path="menu.img_path"
+              :date="menu.date"
+              :initial="menu.initial"
+              :item_name="menu.item_name"
+              :price ="menu.price"
+              :btn_id="menu.btn_id"
+              :btn_path="menu.btn_path"
+              @clickopenmodal="onDisplayImg(menu.img_path)"
+              >
+          </reviewmainimgareapc>      
+        </div>
+      </div>
+
+      <!-- モーダル -->
+      <transition name="fade">
+        <modal 
+          :is-shown="isShown"
+          :image-path="displayImgPath"
+          @close="closeModal()" 
+          >
+        </modal>
+      </transition>
+
+    </div>
+     
+    <div class="apply-form-tab tab-sp"
+     v-show="sp_tab_active === 1">
+      <div class="apply-form-area">
+        <h1 class="h1 apply-h1">{{ apply_h1 }}</h1>
+        <div class="apply-form-wraper">
+          <form action="" class="apply-form">
+
+            <div class="apply-name-wraper form-group">
+              <label for="apply_name" class="apply-name-tag apply-tag">{{ apply_name_tag }}
+                <span class="needress">{{ apply_span_need }}</span>
+              </label>
+              <input type="text" name="apply_name" id="apply-name" v-model="apply_name" class="apply-form-txt">
+            </div>
+            <applyvalidate :applyerrors="apply_errors.apply_name"></applyvalidate>
+
+            <div class="apply-email-wraper form-group">
+              <label for="apply_email" class="apply-email-tag apply-tag">{{ apply_email_tag }}
+                <span class="needress">{{ apply_span_need }}</span>
+              </label>
+              <input type="text" name="apply_email" id="apply-email" v-model="apply_email" class="apply-form-txt">
+            </div>
+            <applyvalidate :applyerrors="apply_errors.apply_email"></applyvalidate>
+
+            <div class="apply-tel-wraper form-group">
+              <label for="apply_tel" class="apply-tel-tag apply-tag">{{ apply_tel_tag }}</label>
+              <input type="text" name="apply_tel" id="apply-tel" v-model="apply_tel" class="apply-form-txt">
+            </div>
+
+            <div class="apply-kind-wraper form-group">
+              <label for="apply_kind" class="apply-kind-tag apply-tag">{{ apply_kind_tag }}
+                <span class="needress">{{ apply_span_need }}</span>
+              </label>
+              <div class="form-wrap-row">
+                <label for="apply_kind_radio"
+                      class="apply-kind-radio"
+                      v-for="(menu, i) in apply_kind_radio"
+                      :key="i">
+                  <input type="radio"
+                        :name="menu.name"
+                        :value="menu.kind"
+                        :v-model="menu.v_model">
+                    <span class="apply-radio-check"></span>
+                    <span class="apply-radio-label">{{ menu.kind }}</span>
+                </label>
+              </div>
+            </div>
+            <applyvalidate :applyerrors="apply_errors.apply_kind"></applyvalidate>
+
+            <div class="apply-img-wraper form-group">
+              <label for="apply_img" class="apply-img-tag apply-tag">{{ apply_img_tag }}</label> 
+              <label class="apply-post-file-wrap"> 
+                <div class="apply-file-icon">
+                  <i class="fa-solid fa-plus"></i>
+                </div>
+                <input type="file" name="apply_img" id="apply-img"  accept="image/*" ref="preview" multiple="multiple" @change="applyUploadFile">
+                <div v-if="apply_img_url" class="apply-display-img">
+                  <img :src="apply_img_url">
+                </div>  
+              </label>          
+            </div>
+
+            <div class="apply-address-number-wraper form-group">
+              <label for="apply_address_number" class="apply-address-number-tag apply-tag">{{ apply_address_number_tag }}
+                <span class="needress">{{ apply_span_need }}</span>
+              </label>
+              <input type="text" name="apply_address_number" id="apply-address-number" v-model="apply_address_number" class="apply-form-txt apply-form-txt-address-number">
+              <button class="address-search-btn"
+                      @click.prevent="displayAddres">{{ apply_search_btn_label }}</button>              
+            </div>
+            <applyvalidate :applyerrors="apply_errors.apply_address_number"></applyvalidate>
+
+            <div class="apply-pre-wraper form-group">
+              <label for="apply_pre_tag" class="apply-pre-tag apply-tag">{{ apply_pre_tag }}
+                <span class="needress">{{ apply_span_need }}</span>
+              </label>
+              <select name="apply_pre" id="apply-pre" class="apply-pre-serect" v-model="apply_pre">
+                <option value=""
+                        v-for="(menu,i) in apply_select_option_pre"
+                        :key="i">
+                  {{ menu.pre }}
+                </option>
+              </select>              
+            </div>
+            <applyvalidate :applyerrors="apply_errors.apply_pre"></applyvalidate>
+
+            <div class="apply-address-wraper form-group">
+              <label for="apply-address-tag" class="apply-address-tag apply-tag">{{ apply_address_tag }}
+                <span class="needress">{{ apply_span_need }}</span>
+              </label>  
+              <input type="text" name="apply_address" id="apply-address" v-model="apply_address" class="apply-form-txt">            
+            </div>
+            <applyvalidate :applyerrors="apply_errors.apply_address"></applyvalidate>   
+
+            <div class="apply-other-wraper form-group">
+              <label for="apply_other" class="apply-other-tag apply-tag">{{ apply_other_tag }}</label>  
+              <textarea name="apply_other" id="apply-other" class="apply-other-txt-area" cols="30" rows="10" v-model="apply_other"></textarea>
+            </div>
+
+            <div class="apply-form-btn-area">
+              <input 
+                    type="submit" 
+                    class="apply-submit-btn submit-btn" 
+                    value="確認画面へ"
+                    @click.prevent="applyValidate">
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="items tab-sp"
+         v-show="sp_tab_active === 2">
+    </div>    
+    <!-- SP時にヘッダーから呼び出される画面 -->
 
     <!-- footer -->
     <footer class="footer">
@@ -444,6 +742,8 @@
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">  
     <!-- swiperのcss -->
     <link href="https://cdn.jsdelivr.net/npm/swiper@5.3.6/css/swiper.min.css" rel="stylesheet">  
+    <!-- 郵便番号js -->
+    <script src="https://yubinbango.github.io/yubinbango-core/yubinbango-core.js"></script>
     <!-- jsファイル -->
     <script src="./script/script.js"></script>
   </body>

@@ -11,9 +11,14 @@ a{
 }
 
 /* 1月31日追加 */
-.tab {
+.tab-pc,
+.tab-sp {
   margin-top: 50px;
   min-height: 100vh;
+}
+
+.tab-sp {
+  display: none;
 }
 
 .about-h1,
@@ -628,6 +633,12 @@ h2 {
   height: 100%;
   background: rgba(0,0,0,0.6);
   z-index: 9;
+  padding: 10%;
+}
+
+.modal-img {
+  width: 30%;
+  margin: 0 auto;
 }
 
 /* footer */
@@ -683,6 +694,16 @@ h2 {
 @media screen and (max-width: 611px) { 
 
   /* 共通 */
+
+  .tab-pc {
+    display: none;
+  }
+  
+  .tab-sp {
+    display: block;
+  }
+
+
   .about-h1,
   .service-h1,
   .review-h1 {
@@ -741,6 +762,7 @@ h2 {
 
   /* ナビリンク(SP) */
   .header-nav-menus_sp {
+    width: 60%;
     display: flex;
     align-items: center;
   }
@@ -749,7 +771,7 @@ h2 {
     display: block;
     font-family: Arial;
     font-size: 10px;
-    margin-right: 12%;
+    margin-right: 10%;
   }  
   /* ナビリンク(SP) */  
 
@@ -1058,6 +1080,12 @@ h2 {
 
   .like-btn-img {
     width: 15px;
+  }
+
+  /* 2月4日追加 */
+  .modal-img {
+    width: 50%;
+    margin: 25vh auto;
   }
 
   /* footer */
