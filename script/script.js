@@ -1096,6 +1096,13 @@ const app = new Vue({
                 item_price: '¥5,500',
                 btn_path: './img/like_img/items_like.png',
                 btn_class:'item-like-btn-12',
+            },{
+                item_id: 'item-11',
+                item_path: './img/items/shirts/shirts3.jpg',
+                item_name: 'Aloha Shirts',
+                item_price: '¥6,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-btn-12',
             }],
 
             // ジャケットのデータ
