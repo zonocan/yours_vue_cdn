@@ -466,6 +466,51 @@ const applyValidate = Vue.component('applyvalidate', {
 });
 // apply
 
+// items
+const itemsThumbnail = Vue.component('itemsthumbnail', {
+    props: {
+        item_id: {
+            type: String,
+            default: ''              
+        },
+        item_path: {
+            type: String,
+            default: ''              
+        },
+        item_name: {
+            type: String,
+            default: ''              
+        },
+        item_price: {
+            type: String,
+            default: ''              
+        },
+        btn_path: {
+            type: String,
+            default: ''              
+        },
+        btn_class: {
+            type: String,
+            default: ''              
+        },
+    },
+    template: `
+    <div class="item-line-up" :id="item_id">
+        <div class="item-img-wrap">
+            <img :src="item_path" class="item-img">
+        </div>
+        <div class="item-info-wrap">
+            <p class="item-info-name">{{ item_name }}</p>
+            <div class="item-price-area-wrap">
+                <p class="item-price-area-price">{{ item_price }}</p>
+                <button class="item-price-area-like-btn" :class="btn_class">
+                    <img :src="btn_path" class="item-price-area-like-btn-icon">        
+                </button>
+            </div>
+        </div>
+    </div>
+    `
+});
 const app = new Vue({
     el: '#app',
     components: {
@@ -488,6 +533,9 @@ const app = new Vue({
         // index
         // apply
         'applyvalidate' : applyValidate,
+        // apply
+        // items
+        'itemsthumbnail' : itemsThumbnail,
     },
     data(){
         return{
@@ -942,9 +990,114 @@ const app = new Vue({
                 pre: '鹿児島県'
             },{
                 pre: '沖縄県'
-            }],
-            
+            }],            
             // apply
+
+            // items
+            items_h1: 'ラインナップ',
+
+            // ナビゲーション
+            items_tab_active: 0,
+
+            items_nav: [{
+                label: 'ALL'
+            },{
+                label: 'JUCKET'
+            },{
+                label: 'SHIRTS'
+            },{
+                label: 'BOTTOMS'
+            },{
+                label: 'ACCESARY'
+            }],
+
+            // 全商品のデータ
+            all_items_contents: [{
+                item_id: 'item-1',
+                item_path: './img/items/jucket/jucket2.jpg',
+                item_name: 'Denim Taired Jackt',
+                item_price: '¥7,500',
+                btn_path: './img/like_img/like_sp.png',
+                btn_class:'item-like-btn-1',
+            },{
+                item_id: 'item-2',
+                item_path: './img/items/jucket/jucket1.jpg',
+                item_name: 'Denim Taired Jackt',
+                item_price: '¥22,500',
+                btn_path: './img/like_img/like_sp.png',
+                btn_class:'item-like-btn-2',
+            },{
+                item_id: 'item-3',
+                item_path: './img/items/jucket/jucket5.jpg',
+                item_name: 'Two way long caught',
+                item_price: '¥34,500',
+                btn_path: './img/like_img/like_sp.png',
+                btn_class:'item-like-btn-3',
+            },{
+                item_id: 'item-4',
+                item_path: './img/items/bottoms/bottoms1.jpg',
+                item_name: 'Denim Pants',
+                item_price: '¥7,500',
+                btn_path: './img/like_img/like_sp.png',
+                btn_class:'item-like-btn-4',
+            },{
+                item_id: 'item-5',
+                item_path: './img/items/accesarry/accesary2.jpg',
+                item_name: 'Cap',
+                item_price: '¥5,000',
+                btn_path: './img/like_img/like_sp.png',
+                btn_class:'item-like-btn-5',
+            },{
+                item_id: 'item-6',
+                item_path: './img/items/accesarry/accesary3.jpg',
+                item_name: 'Barray Cap',
+                item_price: '¥5,500',
+                btn_path: './img/like_img/like_sp.png',
+                btn_class:'item-like-btn-6',
+            },{
+                item_id: 'item-7',
+                item_path: './img/items/shirts/shirts2.jpg',
+                item_name: 'White Shirts',
+                item_price: '¥3,500',
+                btn_path: './img/like_img/like_sp.png',
+                btn_class:'item-like-btn-7',
+            },{
+                item_id: 'item-8',
+                item_path: './img/items/bottoms/bottoms2.jpg',
+                item_name: 'Street Pants',
+                item_price: '¥12,500',
+                btn_path: './img/like_img/like_sp.png',
+                btn_class:'item-like-btn-8',
+            },{
+                item_id: 'item-9',
+                item_path: './img/items/jucket/jucket4.jpg',
+                item_name: 'Two way Jucket',
+                item_price: '¥24,500',
+                btn_path: './img/like_img/like_sp.png',
+                btn_class:'item-like-btn-9',
+            },{
+                item_id: 'item-10',
+                item_path: './img/items/accesarry/accesary1.jpg',
+                item_name: 'Sun grass',
+                item_price: '¥3,500',
+                btn_path: './img/like_img/like_sp.png',
+                btn_class:'item-like-btn-10',
+            },{
+                item_id: 'item-11',
+                item_path: './img/items/jucket/jucket3.jpg',
+                item_name: 'Denim Break Shirts',
+                item_price: '¥22,500',
+                btn_path: './img/like_img/like_sp.png',
+                btn_class:'item-like-btn-11',
+            },{
+                item_id: 'item-12',
+                item_path: './img/items/shirts/shirts1.jpg',
+                item_name: 'White Shirts',
+                item_price: '¥5,500',
+                btn_path: './img/like_img/like_sp.png',
+                btn_class:'item-like-btn-12',
+            }],
+            // items
 
             // footer
             footer_logo_path: './img/logo/logo_footer.png',
@@ -1009,7 +1162,6 @@ const app = new Vue({
         // header
 
         // index
-
         //モーダルの非表示 
         closeModal() {
             this.isShown = false;
@@ -1020,6 +1172,7 @@ const app = new Vue({
             this.isShown = true;  
         },    
         
+        //モーダルの画像のセット
         onDisplayImg(path) {
             this.setImage(path);
             this.openModal();
@@ -1096,6 +1249,11 @@ const app = new Vue({
             this.apply_img_url = URL.createObjectURL(file);
         },
         // apply
+
+        // items
+        itemsTabactive: function(i) {
+            this.items_tab_active = i;
+        },
 
     }
 });
