@@ -1097,6 +1097,102 @@ const app = new Vue({
                 btn_path: './img/like_img/items_like.png',
                 btn_class:'item-like-btn-12',
             }],
+
+            // ジャケットのデータ
+            jucket_items_contents: [{
+                item_id: 'item-jucket-1',
+                item_path: './img/items/jucket/jucket2.jpg',
+                item_name: 'Denim Taired Jackt',
+                item_price: '¥7,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-jucket-btn-1',                
+            },{
+                item_id: 'item-jucket-2',
+                item_path: './img/items/jucket/jucket1.jpg',
+                item_name: 'Denim Taired Jackt',
+                item_price: '¥22,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-jucket-btn-2',                
+            },{
+                item_id: 'item-jucket-3',
+                item_path: './img/items/jucket/jucket5.jpg',
+                item_name: 'Two way long caught',
+                item_price: '¥34,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-jucket-btn-3',
+            },{
+                item_id: 'item-jucket-4',
+                item_path: './img/items/jucket/jucket4.jpg',
+                item_name: 'Two way Jucket',
+                item_price: '¥24,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-jucket-btn-4',
+            },{
+                item_id: 'item-jucket-5',
+                item_path: './img/items/jucket/jucket3.jpg',
+                item_name: 'Denim Break Shirts',
+                item_price: '¥22,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-jucket-btn-5',
+            }],
+
+            // シャツのデータ
+            shirts_items_contents: [{
+                item_id: 'item-shirts-1',
+                item_path: './img/items/shirts/shirts2.jpg',
+                item_name: 'White Shirts',
+                item_price: '¥3,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-shirts-btn-1',                
+            },{
+                item_id: 'item-shirts-2',
+                item_path: './img/items/shirts/shirts1.jpg',
+                item_name: 'White Shirts',
+                item_price: '¥5,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-shirts-btn-2',
+            }],
+
+            // ボトムスのデータ
+            bottoms_items_contents: [{
+                item_id: 'item-bottoms-1',
+                item_path: './img/items/bottoms/bottoms1.jpg',
+                item_name: 'Denim Pants',
+                item_price: '¥7,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-bottoms-btn-1',
+            },{
+                item_id: 'item-bottoms-2',
+                item_path: './img/items/bottoms/bottoms2.jpg',
+                item_name: 'Street Pants',
+                item_price: '¥12,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-bottoms-btn-2',
+            }],
+
+            // アクセサリーのデータ
+            accesarry_items_contents: [{
+                item_id: 'item-accesarry-1',
+                item_path: './img/items/accesarry/accesary2.jpg',
+                item_name: 'Cap',
+                item_price: '¥5,000',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-accesarry-btn-1',
+            },{
+                item_id: 'item-accesarry-2',
+                item_path: './img/items/accesarry/accesary3.jpg',
+                item_name: 'Barray Cap',
+                item_price: '¥5,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-accesarry-btn-2',                
+            },{
+                item_id: 'item-accesarry-3',
+                item_path: './img/items/accesarry/accesary1.jpg',
+                item_name: 'Sun grass',
+                item_price: '¥3,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-accesarry-btn-3',
+            }],
             // items
 
             // footer

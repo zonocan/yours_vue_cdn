@@ -408,7 +408,7 @@
                   </li>
                 </ul>
             </nav>
-            <div class="items-line-all-up-wraper"
+            <div class="items-line-all-up-wraper items-line-up-wraper"
                  v-show="items_tab_active === 0">
                 <itemsthumbnail
                   v-for="(menu, i) in all_items_contents"
@@ -421,6 +421,58 @@
                   :btn_class="menu.btn_class">
                 </itemsthumbnail>
             </div>
+            <div class="items-line-jucket-wraper items-line-up-wraper"
+                 v-show="items_tab_active === 1">
+              <itemsthumbnail
+                v-for="(menu, i) in jucket_items_contents"
+                :key="i"
+                :item_id="menu.item_id"
+                :item_path="menu.item_path"
+                :item_name="menu.item_name"
+                :item_price="menu.item_price"
+                :btn_path="menu.btn_path"
+                :btn_class="menu.btn_class">
+              </itemsthumbnail>
+            </div>
+            <div class="items-line-shirts-wraper items-line-up-wraper"
+                 v-show="items_tab_active === 2">
+                 <itemsthumbnail
+                 v-for="(menu, i) in shirts_items_contents"
+                 :key="i"
+                 :item_id="menu.item_id"
+                 :item_path="menu.item_path"
+                 :item_name="menu.item_name"
+                 :item_price="menu.item_price"
+                 :btn_path="menu.btn_path"
+                 :btn_class="menu.btn_class">
+               </itemsthumbnail>                 
+            </div>
+            <div class="items-line-bottoms-wraper items-line-up-wraper"
+                 v-show="items_tab_active === 3">
+                 <itemsthumbnail
+                 v-for="(menu, i) in bottoms_items_contents"
+                 :key="i"
+                 :item_id="menu.item_id"
+                 :item_path="menu.item_path"
+                 :item_name="menu.item_name"
+                 :item_price="menu.item_price"
+                 :btn_path="menu.btn_path"
+                 :btn_class="menu.btn_class">
+               </itemsthumbnail>                 
+            </div>
+            <div class="items-line-accesarry-wraper items-line-up-wraper"
+                 v-show="items_tab_active === 4">
+                 <itemsthumbnail
+                 v-for="(menu, i) in accesarry_items_contents"
+                 :key="i"
+                 :item_id="menu.item_id"
+                 :item_path="menu.item_path"
+                 :item_name="menu.item_name"
+                 :item_price="menu.item_price"
+                 :btn_path="menu.btn_path"
+                 :btn_class="menu.btn_class">
+               </itemsthumbnail>                 
+            </div>                        
         </div>
     </div>
 
@@ -720,7 +772,7 @@
                   </li>
                 </ul>
             </nav>
-            <div class="items-line-all-up-wraper"
+            <div class="items-line-all-up-wraper items-line-up-wraper"
                  v-show="items_tab_active === 0">
                 <itemsthumbnail
                   v-for="(menu, i) in all_items_contents"
@@ -733,6 +785,58 @@
                   :btn_class="menu.btn_class">
                 </itemsthumbnail>
             </div>
+            <div class="items-line-jucket-wraper items-line-up-wraper"
+                 v-show="items_tab_active === 1">
+              <itemsthumbnail
+                v-for="(menu, i) in jucket_items_contents"
+                :key="i"
+                :item_id="menu.item_id"
+                :item_path="menu.item_path"
+                :item_name="menu.item_name"
+                :item_price="menu.item_price"
+                :btn_path="menu.btn_path"
+                :btn_class="menu.btn_class">
+              </itemsthumbnail>
+            </div>    
+            <div class="items-line-shirts-wraper items-line-up-wraper"
+                 v-show="items_tab_active === 2">
+                 <itemsthumbnail
+                 v-for="(menu, i) in shirts_items_contents"
+                 :key="i"
+                 :item_id="menu.item_id"
+                 :item_path="menu.item_path"
+                 :item_name="menu.item_name"
+                 :item_price="menu.item_price"
+                 :btn_path="menu.btn_path"
+                 :btn_class="menu.btn_class">
+               </itemsthumbnail>                 
+            </div>
+            <div class="items-line-bottoms-wraper items-line-up-wraper"
+                 v-show="items_tab_active === 3">
+                 <itemsthumbnail
+                 v-for="(menu, i) in bottoms_items_contents"
+                 :key="i"
+                 :item_id="menu.item_id"
+                 :item_path="menu.item_path"
+                 :item_name="menu.item_name"
+                 :item_price="menu.item_price"
+                 :btn_path="menu.btn_path"
+                 :btn_class="menu.btn_class">
+               </itemsthumbnail>                 
+            </div>
+            <div class="items-line-accesarry-wraper items-line-up-wraper"
+                 v-show="items_tab_active === 4">
+                 <itemsthumbnail
+                 v-for="(menu, i) in accesarry_items_contents"
+                 :key="i"
+                 :item_id="menu.item_id"
+                 :item_path="menu.item_path"
+                 :item_name="menu.item_name"
+                 :item_price="menu.item_price"
+                 :btn_path="menu.btn_path"
+                 :btn_class="menu.btn_class">
+               </itemsthumbnail>                 
+            </div>                    
       </div>                 
     </div>    
     <!-- SP時にヘッダーから呼び出される画面 -->

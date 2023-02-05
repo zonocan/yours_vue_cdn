@@ -129,6 +129,11 @@ h2 {
 .lists-humberger {
   display: none;
 }
+
+/* 2月6日追加 */
+.header-nav-menu.tab_active {
+  border-bottom: 1px solid #fff;
+}
 /* ナビリンク(PC) */
 
 /* PCで表示しない要素 */
@@ -773,7 +778,12 @@ h2 {
     font-size: 10px;
     margin-right: 10%;
   }  
-  /* ナビリンク(SP) */  
+
+    /* 2月6日追加 */
+  .header-nav-menu-sp.sp_tab_active {
+    border-bottom: 1px solid #fff;
+  }
+    /* ナビリンク(SP) */  
 
   /* topページ */
   .top-h1-area {
