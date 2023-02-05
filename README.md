@@ -1,1 +1,1 @@
-# yours_vue_cdn
+# vue-yours
