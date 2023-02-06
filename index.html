@@ -418,7 +418,8 @@
                   :item_name="menu.item_name"
                   :item_price="menu.item_price"
                   :btn_path="menu.btn_path"
-                  :btn_class="menu.btn_class">
+                  :btn_class="menu.btn_class"
+                  @clickopenmodal="onDisplayImg(menu.item_path)">
                 </itemsthumbnail>
             </div>
             <div class="items-line-jucket-wraper items-line-up-wraper"
@@ -431,7 +432,8 @@
                 :item_name="menu.item_name"
                 :item_price="menu.item_price"
                 :btn_path="menu.btn_path"
-                :btn_class="menu.btn_class">
+                :btn_class="menu.btn_class"
+                @clickopenmodal="onDisplayImg(menu.item_path)">
               </itemsthumbnail>
             </div>
             <div class="items-line-shirts-wraper items-line-up-wraper"
@@ -444,7 +446,8 @@
                  :item_name="menu.item_name"
                  :item_price="menu.item_price"
                  :btn_path="menu.btn_path"
-                 :btn_class="menu.btn_class">
+                 :btn_class="menu.btn_class"
+                 @clickopenmodal="onDisplayImg(menu.item_path)">
                </itemsthumbnail>                 
             </div>
             <div class="items-line-bottoms-wraper items-line-up-wraper"
@@ -457,7 +460,8 @@
                  :item_name="menu.item_name"
                  :item_price="menu.item_price"
                  :btn_path="menu.btn_path"
-                 :btn_class="menu.btn_class">
+                 :btn_class="menu.btn_class"
+                 @clickopenmodal="onDisplayImg(menu.item_path)">
                </itemsthumbnail>                 
             </div>
             <div class="items-line-accesarry-wraper items-line-up-wraper"
@@ -470,9 +474,20 @@
                  :item_name="menu.item_name"
                  :item_price="menu.item_price"
                  :btn_path="menu.btn_path"
-                 :btn_class="menu.btn_class">
+                 :btn_class="menu.btn_class"
+                 @clickopenmodal="onDisplayImg(menu.item_path)">
                </itemsthumbnail>                 
-            </div>                        
+            </div> 
+
+            <transition name="fade">
+                <modal 
+                  :is-shown="isShown"
+                  :image-path="displayImgPath"
+                  @close="closeModal()" 
+                >
+                </modal>
+            </transition>
+
         </div>
     </div>
 
@@ -782,7 +797,8 @@
                   :item_name="menu.item_name"
                   :item_price="menu.item_price"
                   :btn_path="menu.btn_path"
-                  :btn_class="menu.btn_class">
+                  :btn_class="menu.btn_class"
+                  @clickopenmodal="onDisplayImg(menu.item_path)">
                 </itemsthumbnail>
             </div>
             <div class="items-line-jucket-wraper items-line-up-wraper"
@@ -795,7 +811,8 @@
                 :item_name="menu.item_name"
                 :item_price="menu.item_price"
                 :btn_path="menu.btn_path"
-                :btn_class="menu.btn_class">
+                :btn_class="menu.btn_class"
+                @clickopenmodal="onDisplayImg(menu.item_path)">
               </itemsthumbnail>
             </div>    
             <div class="items-line-shirts-wraper items-line-up-wraper"
@@ -808,7 +825,8 @@
                  :item_name="menu.item_name"
                  :item_price="menu.item_price"
                  :btn_path="menu.btn_path"
-                 :btn_class="menu.btn_class">
+                 :btn_class="menu.btn_class"
+                 @clickopenmodal="onDisplayImg(menu.item_path)">
                </itemsthumbnail>                 
             </div>
             <div class="items-line-bottoms-wraper items-line-up-wraper"
@@ -821,7 +839,8 @@
                  :item_name="menu.item_name"
                  :item_price="menu.item_price"
                  :btn_path="menu.btn_path"
-                 :btn_class="menu.btn_class">
+                 :btn_class="menu.btn_class"
+                 @clickopenmodal="onDisplayImg(menu.item_path)">
                </itemsthumbnail>                 
             </div>
             <div class="items-line-accesarry-wraper items-line-up-wraper"
@@ -834,10 +853,21 @@
                  :item_name="menu.item_name"
                  :item_price="menu.item_price"
                  :btn_path="menu.btn_path"
-                 :btn_class="menu.btn_class">
+                 :btn_class="menu.btn_class"
+                 @clickopenmodal="onDisplayImg(menu.item_path)">
                </itemsthumbnail>                 
-            </div>                    
-      </div>                 
+            </div> 
+            
+            <transition name="fade">
+              <modal 
+                :is-shown="isShown"
+                :image-path="displayImgPath"
+                @close="closeModal()" 
+              >
+              </modal>
+          </transition>
+
+        </div>                 
     </div>    
     <!-- SP時にヘッダーから呼び出される画面 -->
 

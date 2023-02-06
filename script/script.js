@@ -497,7 +497,9 @@ const itemsThumbnail = Vue.component('itemsthumbnail', {
     template: `
     <div class="item-line-up" :id="item_id">
         <div class="item-img-wrap">
-            <img :src="item_path" class="item-img">
+            <img :src="item_path" 
+                 class="item-img"
+                 @click="$emit('clickopenmodal')" >
         </div>
         <div class="item-info-wrap">
             <p class="item-info-name">{{ item_name }}</p>
@@ -511,6 +513,7 @@ const itemsThumbnail = Vue.component('itemsthumbnail', {
     </div>
     `
 });
+
 const app = new Vue({
     el: '#app',
     components: {
@@ -1103,7 +1106,56 @@ const app = new Vue({
                 item_price: '¥6,500',
                 btn_path: './img/like_img/items_like.png',
                 btn_class:'item-like-btn-12',
-            }],
+            },{
+                item_id: 'item-12',
+                item_path: './img/items/bottoms/bottoms3.jpg',
+                item_name: 'Red skiny',
+                item_price: '¥5,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-btn-12',
+            },{
+                item_id: 'item-13',
+                item_path: './img/items/accesarry/accesary4.jpg',
+                item_name: 'Smart-wach',
+                item_price: '¥18,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-btn-13',
+            },{
+                item_id: 'item-14',
+                item_path: './img/items/shirts/shirts4.jpg',
+                item_name: 'White Brouse',
+                item_price: '¥4,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-btn-14',
+            },{
+                item_id: 'item-15',
+                item_path: './img/items/bottoms/bottoms4.jpg',
+                item_name: 'Black skiny',
+                item_price: '¥5,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-btn-15',
+            },{
+                item_id: 'item-16',
+                item_path: 'img/items/shirts/shirts5.jpg',
+                item_name: 'Summer Aloha',
+                item_price: '¥5,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-btn-16',
+            },{
+                item_id: 'item-16',
+                item_path: './img/items/shirts/shirts6.jpg',
+                item_name: 'Sexy Tanktop',
+                item_price: '¥5,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-btn-17',
+            },{
+                item_id: 'item-16',
+                item_path: './img/items/bottoms/bottoms5.jpg',
+                item_name: 'Sexy Jeans',
+                item_price: '¥5,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-btn-17',
+            },],
 
             // ジャケットのデータ
             jucket_items_contents: [{
@@ -1158,6 +1210,27 @@ const app = new Vue({
                 item_price: '¥5,500',
                 btn_path: './img/like_img/items_like.png',
                 btn_class:'item-like-shirts-btn-2',
+            },{
+                item_id: 'item-shirts-3',
+                item_path: './img/items/shirts/shirts3.jpg',
+                item_name: 'Aloha Shirts',
+                item_price: '¥6,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-shirts-btn-3',
+            },{
+                item_id: 'item-shirts-4',
+                item_path: './img/items/shirts/shirts4.jpg',
+                item_name: 'White Brouse',
+                item_price: '¥4,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-shirts-btn-4',
+            },{
+                item_id: 'item-shirts-5',
+                item_path: './img/items/shirts/shirts6.jpg',
+                item_name: 'Sexy Tanktop',
+                item_price: '¥5,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-shirts-btn-5',
             }],
 
             // ボトムスのデータ
@@ -1175,7 +1248,21 @@ const app = new Vue({
                 item_price: '¥12,500',
                 btn_path: './img/like_img/items_like.png',
                 btn_class:'item-like-bottoms-btn-2',
-            }],
+            },{
+                item_id: 'item-bottoms-3',
+                item_path: './img/items/bottoms/bottoms3.jpg',
+                item_name: 'Red skiny',
+                item_price: '¥5,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-btn-3',
+            },{
+                item_id: 'item-bottoms-3',
+                item_path: './img/items/bottoms/bottoms4.jpg',
+                item_name: 'Black skiny',
+                item_price: '¥5,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-bottoms-btn-3',
+            },],
 
             // アクセサリーのデータ
             accesarry_items_contents: [{
@@ -1199,7 +1286,15 @@ const app = new Vue({
                 item_price: '¥3,500',
                 btn_path: './img/like_img/items_like.png',
                 btn_class:'item-like-accesarry-btn-3',
-            }],
+            },{
+                item_id: 'item-accesarry-4',
+                item_path: './img/items/accesarry/accesary4.jpg',
+                item_name: 'Smart-wach',
+                item_price: '¥18,500',
+                btn_path: './img/like_img/items_like.png',
+                btn_class:'item-like-accesarry-btn-4',
+            },],
+
             // items
 
             // footer
