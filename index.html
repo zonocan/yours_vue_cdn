@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/apply.css">
     <link rel="stylesheet" href="./css/items.css">
+    <link rel="stylesheet" href="./css/register-form.css">
   <title>your`s</title>
 </head>
 
@@ -114,11 +115,11 @@
     <!-- ハンバーガーナビ(SP) -->
 
     <!-- PC時にヘッダーから呼び出される画面 -->
-    <!-- メイン画面 -->
-    <div class="index tab-pc"
+    <!-- メイン画面(PC) -->
+    <main class="index tab-pc"
           v-show="tab_active === 0">   
 
-      <!-- topページスライダー -->
+      <!-- topページスライダー(PC) -->
       <div class="top">
         <swiper :options="swiperOptions">
           <swiper-slide
@@ -137,7 +138,7 @@
         </div>
       </div>
 
-      <!-- aboutページ -->
+      <!-- aboutページ(PC) -->
       <div class="about">
         <div class="about-background-left-outer">
           <h1 class="about-h1">{{ about_h1 }}</h1>
@@ -168,7 +169,7 @@
         <div class="about-background-right-outer"></div>
       </div> 
 
-      <!-- serviceページ -->
+      <!-- serviceページ(PC) -->
       <div class="service">
         <h1 class="service-h1">{{ service_h1 }}</h1>
         <div class="servic-btn-area">
@@ -188,7 +189,7 @@
         </div>
       </div>
 
-      <!-- reviewページ -->
+      <!-- reviewページ(PC) -->
       <div class="review">
         <div class="review-main-area-outer">
           <h1 class="review-h1">{{ review_h1 }}</h1>
@@ -259,7 +260,7 @@
         </div>
       </div>
 
-      <!-- モーダル -->
+      <!-- モーダル(PC) -->
       <transition name="fade">
         <modal 
           :is-shown="isShown"
@@ -269,10 +270,10 @@
         </modal>
       </transition>
 
-    </div>
+    </main>
 
-    <!-- form画面(apply) -->
-    <div class="apply-form-tab tab-pc"
+    <!-- form画面(apply)(PC) -->
+    <main class="apply-form-tab tab-pc"
          v-show="tab_active === 1">
       <div class="apply-form-area">
         <h1 class="h1 apply-h1">{{ apply_h1 }}</h1>
@@ -381,15 +382,47 @@
           </form>
         </div>
       </div>
-    </div>
+    </main>
 
-    <!-- ログイン画面 -->
-    <div class="login-form tab-pc"
+    <!-- ログイン画面(PC) -->
+    <main class="login-form tab-pc"
           v-show="tab_active === 2">
-    </div>
+          <div class="rgister-info-forma-area">
+            <h1 class="h1 login-h1">{{ login_h1 }}</h1>
+            <div class="register-info-wraper">
+              <form action="" class="register-info-form">
 
-    <!-- 商品一覧(item)画面 -->
-    <div class="items tab-pc"
+                <div class="form-area register-info-wrap">
+                  <label for="login_mail" class="register-info-label">{{ login_mail_tag }}
+                    <span class="needress">{{ login_span_need }}</span>
+                  </label>
+                  <input type="text" name="login_mail" v-model="login_mail" class="register-info-txt">
+                </div>
+                <loginvalidate :loginerrors="login_errors.login_mail"></loginvalidate>
+
+                <div class="form-area register-info-wrap">
+                  <label for="login_pw" class="register-info-label">{{ login_pw_tag }}
+                    <span class="needress">{{ login_span_need }}</span>
+                  </label>
+                  <input type="text" name="login_pw" v-model="login_pw" class="register-info-txt">
+                </div>
+                <loginvalidate :loginerrors="login_errors.login_pw"></loginvalidate>
+
+                <div class="register-info-form-btn-area">
+                  <input type="submit"
+                         class="register-info-submit-btn submit-btn"
+                         value="ログイン"
+                         @click.prevent="loginValidate()">
+                  <a href="#" class="conect-register-rink">新規登録画面へ</a>
+                </div>
+
+              </form>
+            </div>
+          </div>
+    </main>
+
+    <!-- 商品一覧(item)画面(PC) -->
+    <main class="items tab-pc"
          v-show="tab_active === 3">
          <div class="items-line-up-area">
             <div class="items-h1-block">
@@ -408,6 +441,7 @@
                   </li>
                 </ul>
             </nav>
+            <!-- 全商品 -->
             <div class="items-line-all-up-wraper items-line-up-wraper"
                  v-show="items_tab_active === 0">
                 <itemsthumbnail
@@ -422,6 +456,7 @@
                   @clickopenmodal="onDisplayImg(menu.item_path)">
                 </itemsthumbnail>
             </div>
+            <!-- ジャケット -->
             <div class="items-line-jucket-wraper items-line-up-wraper"
                  v-show="items_tab_active === 1">
               <itemsthumbnail
@@ -436,6 +471,7 @@
                 @clickopenmodal="onDisplayImg(menu.item_path)">
               </itemsthumbnail>
             </div>
+            <!-- シャツ -->
             <div class="items-line-shirts-wraper items-line-up-wraper"
                  v-show="items_tab_active === 2">
                  <itemsthumbnail
@@ -450,6 +486,7 @@
                  @clickopenmodal="onDisplayImg(menu.item_path)">
                </itemsthumbnail>                 
             </div>
+            <!-- ボトムス -->
             <div class="items-line-bottoms-wraper items-line-up-wraper"
                  v-show="items_tab_active === 3">
                  <itemsthumbnail
@@ -464,6 +501,7 @@
                  @clickopenmodal="onDisplayImg(menu.item_path)">
                </itemsthumbnail>                 
             </div>
+            <!-- アクセサリー -->
             <div class="items-line-accesarry-wraper items-line-up-wraper"
                  v-show="items_tab_active === 4">
                  <itemsthumbnail
@@ -479,6 +517,7 @@
                </itemsthumbnail>                 
             </div> 
 
+            <!-- モーダル -->
             <transition name="fade">
                 <modal 
                   :is-shown="isShown"
@@ -489,20 +528,20 @@
             </transition>
 
         </div>
-    </div>
+    </main>
 
-    <!-- 注文確認画面 -->
-    <div class="my-order tab-pc"
+    <!-- 注文確認画面(PC) -->
+    <main class="my-order tab-pc"
          v-show="tab_active === 4">
-    </div>
-     <!-- PC時にヘッダーから呼び出される画面 -->  
+    </main>
+    <!-- PC時にヘッダーから呼び出される画面 -->  
 
     <!-- SP時にヘッダーから呼び出される画面 -->
-    <!-- メイン画面 -->
-    <div class="index tab-sp"
+    <!-- メイン画面(SP) -->
+    <main class="index tab-sp"
          v-show="sp_tab_active === 0">   
 
-      <!-- topページスライダー -->
+      <!-- topページスライダー(SP) -->
       <div class="top">
         <swiper :options="swiperOptions">
           <swiper-slide
@@ -521,7 +560,7 @@
         </div>
       </div>
 
-      <!-- aboutページ -->
+      <!-- aboutページ(SP) -->
       <div class="about">
         <div class="about-background-left-outer">
           <h1 class="about-h1">{{ about_h1 }}</h1>
@@ -552,7 +591,7 @@
         <div class="about-background-right-outer"></div>
       </div> 
 
-      <!-- serviceページ -->
+      <!-- serviceページ(SP) -->
       <div class="service">
         <h1 class="service-h1">{{ service_h1 }}</h1>
         <div class="servic-btn-area">
@@ -572,7 +611,7 @@
         </div>
       </div>
 
-      <!-- reviewページ -->
+      <!-- reviewページ(SP) -->
       <div class="review">
         <div class="review-main-area-outer">
           <h1 class="review-h1">{{ review_h1 }}</h1>
@@ -653,10 +692,10 @@
         </modal>
       </transition>
 
-    </div>
+    </main>
      
-    <!-- form画面(apply) -->
-    <div class="apply-form-tab tab-sp"
+    <!-- form画面(apply)(SP) -->
+    <main class="apply-form-tab tab-sp"
          v-show="sp_tab_active === 1">
       <div class="apply-form-area">
         <h1 class="h1 apply-h1">{{ apply_h1 }}</h1>
@@ -765,10 +804,10 @@
           </form>
         </div>
       </div>
-    </div>
+    </main>
 
-    <!-- 商品一覧(item)画面 -->
-    <div class="items tab-sp"
+    <!-- 商品一覧(item)画面(SP) -->
+    <main class="items tab-sp"
          v-show="sp_tab_active === 2">
          <div class="items-line-up-area">
             <div class="items-h1-block">
@@ -787,6 +826,8 @@
                   </li>
                 </ul>
             </nav>
+
+            <!-- 全商品(SP) -->
             <div class="items-line-all-up-wraper items-line-up-wraper"
                  v-show="items_tab_active === 0">
                 <itemsthumbnail
@@ -801,6 +842,8 @@
                   @clickopenmodal="onDisplayImg(menu.item_path)">
                 </itemsthumbnail>
             </div>
+
+            <!-- ジャケット(SP) -->
             <div class="items-line-jucket-wraper items-line-up-wraper"
                  v-show="items_tab_active === 1">
               <itemsthumbnail
@@ -814,7 +857,9 @@
                 :btn_class="menu.btn_class"
                 @clickopenmodal="onDisplayImg(menu.item_path)">
               </itemsthumbnail>
-            </div>    
+            </div>  
+            
+            <!-- シャツ(SP) -->
             <div class="items-line-shirts-wraper items-line-up-wraper"
                  v-show="items_tab_active === 2">
                  <itemsthumbnail
@@ -829,6 +874,8 @@
                  @clickopenmodal="onDisplayImg(menu.item_path)">
                </itemsthumbnail>                 
             </div>
+
+            <!-- ボトムス(SP) -->
             <div class="items-line-bottoms-wraper items-line-up-wraper"
                  v-show="items_tab_active === 3">
                  <itemsthumbnail
@@ -843,6 +890,8 @@
                  @clickopenmodal="onDisplayImg(menu.item_path)">
                </itemsthumbnail>                 
             </div>
+
+            <!-- アクセサリー(SP) -->
             <div class="items-line-accesarry-wraper items-line-up-wraper"
                  v-show="items_tab_active === 4">
                  <itemsthumbnail
@@ -858,6 +907,7 @@
                </itemsthumbnail>                 
             </div> 
             
+            <!-- モーダル -->
             <transition name="fade">
               <modal 
                 :is-shown="isShown"
@@ -868,7 +918,7 @@
           </transition>
 
         </div>                 
-    </div>    
+    </main>    
     <!-- SP時にヘッダーから呼び出される画面 -->
 
     <!-- footer -->
@@ -946,6 +996,6 @@
     <script src="https://yubinbango.github.io/yubinbango-core/yubinbango-core.js"></script>
     <!-- jsファイル -->
     <script src="./script/script.js"></script>
-  </body>
+</body>
 
 </html>

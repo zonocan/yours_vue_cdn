@@ -426,7 +426,7 @@ const reviewMainimgareaPc = Vue.component('reviewmainimgareapc',{
 });
 
 
-// モーダル
+// モーダル(items画面と併用)
 const modal = Vue.component('modal', {
     props: {
         isShown: {
@@ -465,6 +465,15 @@ const applyValidate = Vue.component('applyvalidate', {
     `
 });
 // apply
+
+// login
+const loginValidate = Vue.component('loginvalidate', {
+    props: ['loginerrors'],
+    template: 
+    `<div class="login-errors" v-if="loginerrors">
+        <p class="login-error" v-for="loginerror in loginerrors">{{ loginerror }}</p>
+    </div>`
+});
 
 // items
 const itemsThumbnail = Vue.component('itemsthumbnail', {
@@ -539,6 +548,8 @@ const app = new Vue({
         // apply
         // items
         'itemsthumbnail' : itemsThumbnail,
+        // login
+        'loginvalidate' : loginValidate
     },
     data(){
         return{
@@ -693,7 +704,7 @@ const app = new Vue({
                 view_arrow_2_path: './img/icons_img/service_arrow_2.png'                         
             },{
                 id: 'shirts-service-btn',                
-                service_icons_path: './img/icons_img/icon_2.png',
+                service_icons_path: './img/icons_img/icon_3.png',
                 span_outer_class: 'shirts-service-btn-outer',
                 span_inner_class: 'shirts-service-btn-inner',                
                 service_name: 'SHIRTS',           
@@ -703,7 +714,7 @@ const app = new Vue({
                 view_arrow_2_path: './img/icons_img/service_arrow_2.png'                                                            
             },{
                 id: 'bottoms-service-btn',
-                service_icons_path: './img/icons_img/icon_3.png',
+                service_icons_path: './img/icons_img/icon_2.png',
                 span_outer_class: 'bottoms-service-btn-outer',
                 span_inner_class: 'bottoms-service-btn-inner',
                 service_name: 'BOTTOMS',
@@ -722,6 +733,9 @@ const app = new Vue({
                 view_arrow_1_path: './img/icons_img/service_arrow_1.png',
                 view_arrow_2_path: './img/icons_img/service_arrow_2.png'                                               
             }],
+
+            // タブの切り替え(PC)
+            service_tab_active_pc: 1,
             // service
 
             // review画面
@@ -995,6 +1009,29 @@ const app = new Vue({
                 pre: '沖縄県'
             }],            
             // apply
+
+            // login
+            login_h1: 'ログイン',
+
+            // ログインのタグ
+            login_mail_tag: 'メールアドレス',
+
+            login_pw_tag: 'パスワード',
+
+            login_span_need: '※',
+
+            // ログインのデータ
+            login_mail: '',
+
+            login_pw: '',
+
+            login_errors: {
+
+                login_mail: [],
+
+                login_pw: []
+            },
+
 
             // items
             items_h1: 'ラインナップ',
@@ -1345,11 +1382,11 @@ const app = new Vue({
 
         // header
         // タブの切り替え(PC)
-        activate: function(i) {
+        activate(i) {
             this.tab_active = i;
         },
 
-        spActive: function(i) {
+        spActive(i) {
             this.sp_tab_active = i;
         },
 
@@ -1360,6 +1397,12 @@ const app = new Vue({
         // header
 
         // index
+
+        // サービスボタンのタブの切り替え(PC)
+        serviceTabActivePc(i) {
+            this.service_tab_active_pc = i;
+        },
+
         //モーダルの非表示 
         closeModal() {
             this.isShown = false;
@@ -1396,7 +1439,7 @@ const app = new Vue({
         },
 
         // バリデーション
-        applyValidate: function() {
+        applyValidate() {
             var apply_errors = {
                 apply_name: [],
 
@@ -1448,8 +1491,24 @@ const app = new Vue({
         },
         // apply
 
+        // login
+        loginValidate() {
+            var login_errors = {
+                login_mail: [],
+
+                login_pw: [],                
+            };
+            if(!this.login_mail) {
+                login_errors.login_mail.push('この項目は必須です');
+            }
+            if(!this.login_pw) {
+                login_errors.login_pw.push('この項目は必須です');
+            }
+            this.login_errors = login_errors;
+        },
+
         // items
-        itemsTabactive: function(i) {
+        itemsTabactive(i) {
             this.items_tab_active = i;
         },
 

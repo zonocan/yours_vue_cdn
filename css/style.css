@@ -149,19 +149,16 @@ h2 {
   position: relative;
 }
 
-.top-h1-area {
-  position: absolute;
-  z-index: 5;
-
-}
-
 .top-h1 {
   font-size: 50px;
   color: #fff;
+  line-height: 1.3;
+  letter-spacing: 3px;  
 }
 
 .top-h1-area {
   position: absolute;
+  z-index: 5;  
   font-size: 50px;
   color: #fff;
   z-index: 5;
@@ -642,7 +639,7 @@ h2 {
 }
 
 .modal-img {
-  width: 30%;
+  width: 45%;
   margin: 0 auto;
 }
 
