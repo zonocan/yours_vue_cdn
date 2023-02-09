@@ -725,7 +725,7 @@ h2 {
   }  
 
   .explain {
-    font-size: 10px;
+    font-size: 11px;
   }  
 
 
@@ -754,6 +754,14 @@ h2 {
     display: none;
   }
 
+  .header-left-area {
+    width: 40%;
+  }
+
+  .header-right-area {
+    width: 60%;
+  }
+
   .header-nav-menus {
     display: none;
   }
@@ -770,10 +778,11 @@ h2 {
   }
 
   .header-nav-menu-sp {
+    width: 25%;
     display: block;
     font-family: Arial;
     font-size: 10px;
-    margin-right: 10%;
+    margin-right: 15%;
   }  
 
     /* 2月6日追加 */
