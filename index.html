@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale1.0">
   <!-- fontawesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous"
     referrerpolicy="no-referrer">  
     <script src="https://cdn.jsdelivr.net/npm/vue-carousel@0.18.0/dist/vue-carousel.min.js"></script>
     <link rel="stylesheet" href="./css/reset.css">
@@ -133,8 +133,12 @@
           <toph1
             v-for="(menu, i) in top_h1"
             :key="i"
-            :h1="menu.h1">
+            :h1="menu.h1">           
           </toph1>
+          <applybtn 
+            :path="btn_arrow_path"
+            class="top-apply-btn">
+          </applybtn>           
         </div>
       </div>
 
@@ -205,7 +209,6 @@
               :item_name="menu.item_name"
               :price="menu.price"
               :btn_id="menu.btn_id"
-              :btn_path="menu.btn_path"
               @clickopenmodal="onDisplayImg(menu.img_path)"
               >
             </reviewmainimgareasp>
@@ -253,7 +256,6 @@
               :item_name="menu.item_name"
               :price ="menu.price"
               :btn_id="menu.btn_id"
-              :btn_path="menu.btn_path"
               @clickopenmodal="onDisplayImg(menu.img_path)"
               >
           </reviewmainimgareapc>      
@@ -451,8 +453,7 @@
                   :item_path="menu.item_path"
                   :item_name="menu.item_name"
                   :item_price="menu.item_price"
-                  :btn_path="menu.btn_path"
-                  :btn_class="menu.btn_class"
+                  :btn_id="menu.btn_id"
                   @clickopenmodal="onDisplayImg(menu.item_path)">
                 </itemsthumbnail>
             </div>
@@ -466,8 +467,7 @@
                 :item_path="menu.item_path"
                 :item_name="menu.item_name"
                 :item_price="menu.item_price"
-                :btn_path="menu.btn_path"
-                :btn_class="menu.btn_class"
+                :btn_id="menu.btn_id"
                 @clickopenmodal="onDisplayImg(menu.item_path)">
               </itemsthumbnail>
             </div>
@@ -481,8 +481,7 @@
                  :item_path="menu.item_path"
                  :item_name="menu.item_name"
                  :item_price="menu.item_price"
-                 :btn_path="menu.btn_path"
-                 :btn_class="menu.btn_class"
+                 :btn_id="menu.btn_id"
                  @clickopenmodal="onDisplayImg(menu.item_path)">
                </itemsthumbnail>                 
             </div>
@@ -496,8 +495,7 @@
                  :item_path="menu.item_path"
                  :item_name="menu.item_name"
                  :item_price="menu.item_price"
-                 :btn_path="menu.btn_path"
-                 :btn_class="menu.btn_class"
+                 :btn_id="menu.btn_id"
                  @clickopenmodal="onDisplayImg(menu.item_path)">
                </itemsthumbnail>                 
             </div>
@@ -512,7 +510,7 @@
                  :item_name="menu.item_name"
                  :item_price="menu.item_price"
                  :btn_path="menu.btn_path"
-                 :btn_class="menu.btn_class"
+                 :btn_id="menu.btn_id"
                  @clickopenmodal="onDisplayImg(menu.item_path)">
                </itemsthumbnail>                 
             </div> 
@@ -557,6 +555,10 @@
             :key="i"
             :h1="menu.h1">
           </toph1>
+          <applybtn 
+            :path="btn_arrow_path"
+            class="top-apply-btn">
+          </applybtn>              
         </div>
       </div>
 
@@ -994,6 +996,8 @@
     <link href="https://cdn.jsdelivr.net/npm/swiper@5.3.6/css/swiper.min.css" rel="stylesheet">  
     <!-- 郵便番号js -->
     <script src="https://yubinbango.github.io/yubinbango-core/yubinbango-core.js"></script>
+    <!-- いいねボタンのアニメーション -->
+    <script src="https://cdn.jsdelivr.net/npm/vue-star@0.0.4/dist/VueStar.js"></script>
     <!-- jsファイル -->
     <script src="./script/script.js"></script>
 </body>

@@ -303,7 +303,7 @@ const reviewMainimgareaSp = Vue.component('reviewmainimgareasp', {
                 class="like-btn-sp" 
                 :id="btn_id"
                 @click="$emit">
-                <img :src="btn_path" class="like-btn-img">
+                <i class="fa-solid fa-heart"></i>
             </button>
         </div>
     </div>
@@ -416,7 +416,7 @@ const reviewMainimgareaPc = Vue.component('reviewmainimgareapc',{
                     class="like-btn" 
                     :id="btn_id"
                     @click="$emit">
-                        <img :src="btn_path" class="detail-btn-arrow">                
+                        <i class="fa-solid fa-heart"></i>             
                     </button>
                 </div>  
             </div>          
@@ -449,6 +449,9 @@ const modal = Vue.component('modal', {
                 </div>
                 `
 });
+
+// vueStarの読み込み
+const VueStar = Vue.component('VueStar');
 
 // swiperの読み込み
 Vue.use(VueAwesomeSwiper);
@@ -494,11 +497,7 @@ const itemsThumbnail = Vue.component('itemsthumbnail', {
             type: String,
             default: ''              
         },
-        btn_path: {
-            type: String,
-            default: ''              
-        },
-        btn_class: {
+        btn_id: {
             type: String,
             default: ''              
         },
@@ -514,8 +513,8 @@ const itemsThumbnail = Vue.component('itemsthumbnail', {
             <p class="item-info-name">{{ item_name }}</p>
             <div class="item-price-area-wrap">
                 <p class="item-price-area-price">{{ item_price }}</p>
-                <button class="item-price-area-like-btn" :class="btn_class">
-                    <img :src="btn_path" class="item-price-area-like-btn-icon">        
+                <button class="item-price-area-like-btn" :id="btn_id" @click="$emit('liked')">
+                    <i class="fa-solid fa-heart like-icon"></i>      
                 </button>
             </div>
         </div>
@@ -528,6 +527,7 @@ const app = new Vue({
     components: {
         'carousel': VueCarousel.Carousel,
         'slide': VueCarousel.Slide,
+        'VueStar': VueStar,
         // header
         'humbergerlists' : humbergerLists,
         // header
@@ -556,7 +556,7 @@ const app = new Vue({
 
             // headder
             // logoのパス
-            logo_path: './img/logo/logo.png',
+            logo_path: './img/logo/logo.svg',
 
             //headerのサイトマップナビゲーション(PC)
             header_nav_menus: [{
@@ -751,7 +751,6 @@ const app = new Vue({
                 item_name: 'Denim Taired Jackt',
                 price: '7,500',      
                 btn_id: 'review-detail-btn-1',
-                btn_path: './img/like_img/like_sp.png'
             },{
                 img_id: 'review-img-2',
                 img_path: './img/display_img/display_img_3.jpg',
@@ -760,7 +759,6 @@ const app = new Vue({
                 item_name: 'Music Jackt',
                 price: '22,500',                                                 
                 btn_id: 'review-detail-btn-2',
-                btn_path: './img/like_img/like_sp.png',   
             }],
 
             // reviewのh2
@@ -1057,141 +1055,121 @@ const app = new Vue({
                 item_path: './img/items/jucket/jucket2.jpg',
                 item_name: 'Denim Taired Jackt',
                 item_price: '¥7,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-1',
+                btn_id:'item-like-btn-1',
             },{
                 item_id: 'item-2',
                 item_path: './img/items/jucket/jucket1.jpg',
                 item_name: 'Denim Taired Jackt',
                 item_price: '¥22,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-2',
+                btn_id:'item-like-btn-2',
             },{
                 item_id: 'item-3',
                 item_path: './img/items/jucket/jucket5.jpg',
                 item_name: 'Two way long caught',
                 item_price: '¥34,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-3',
+                btn_id:'item-like-btn-3',
             },{
                 item_id: 'item-4',
                 item_path: './img/items/bottoms/bottoms1.jpg',
                 item_name: 'Denim Pants',
                 item_price: '¥7,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-4',
+                btn_id:'item-like-btn-4',
             },{
                 item_id: 'item-5',
                 item_path: './img/items/accesarry/accesary2.jpg',
                 item_name: 'Cap',
                 item_price: '¥5,000',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-5',
+                btn_id:'item-like-btn-5',
             },{
                 item_id: 'item-6',
                 item_path: './img/items/accesarry/accesary3.jpg',
                 item_name: 'Barray Cap',
                 item_price: '¥5,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-6',
+                btn_id:'item-like-btn-6',
             },{
                 item_id: 'item-7',
                 item_path: './img/items/shirts/shirts2.jpg',
                 item_name: 'White Shirts',
                 item_price: '¥3,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-7',
+                btn_id:'item-like-btn-7',
             },{
                 item_id: 'item-8',
                 item_path: './img/items/bottoms/bottoms2.jpg',
                 item_name: 'Street Pants',
                 item_price: '¥12,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-8',
+                btn_id:'item-like-btn-8',
             },{
                 item_id: 'item-9',
                 item_path: './img/items/jucket/jucket4.jpg',
                 item_name: 'Two way Jucket',
                 item_price: '¥24,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-9',
+                btn_id:'item-like-btn-9',
             },{
                 item_id: 'item-10',
                 item_path: './img/items/accesarry/accesary1.jpg',
                 item_name: 'Sun grass',
                 item_price: '¥3,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-10',
+                btn_id:'item-like-btn-10',
             },{
                 item_id: 'item-11',
                 item_path: './img/items/jucket/jucket3.jpg',
                 item_name: 'Denim Break Shirts',
                 item_price: '¥22,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-11',
+                btn_id:'item-like-btn-11',
             },{
                 item_id: 'item-12',
                 item_path: './img/items/shirts/shirts1.jpg',
                 item_name: 'White Shirts',
                 item_price: '¥5,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-12',
+                btn_id:'item-like-btn-12',
             },{
                 item_id: 'item-11',
                 item_path: './img/items/shirts/shirts3.jpg',
                 item_name: 'Aloha Shirts',
                 item_price: '¥6,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-12',
+                btn_id:'item-like-btn-12',
             },{
                 item_id: 'item-12',
                 item_path: './img/items/bottoms/bottoms3.jpg',
                 item_name: 'Red skiny',
                 item_price: '¥5,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-12',
+                btn_id:'item-like-btn-12',
             },{
                 item_id: 'item-13',
                 item_path: './img/items/accesarry/accesary4.jpg',
                 item_name: 'Smart-wach',
                 item_price: '¥18,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-13',
+                btn_id:'item-like-btn-13',
             },{
                 item_id: 'item-14',
                 item_path: './img/items/shirts/shirts4.jpg',
                 item_name: 'White Brouse',
                 item_price: '¥4,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-14',
+                btn_id:'item-like-btn-14',
             },{
                 item_id: 'item-15',
                 item_path: './img/items/bottoms/bottoms4.jpg',
                 item_name: 'Black skiny',
                 item_price: '¥5,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-15',
+                btn_id:'item-like-btn-15',
             },{
                 item_id: 'item-16',
                 item_path: 'img/items/shirts/shirts5.jpg',
                 item_name: 'Summer Aloha',
                 item_price: '¥5,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-16',
+                btn_id:'item-like-btn-16',
             },{
                 item_id: 'item-16',
                 item_path: './img/items/shirts/shirts6.jpg',
                 item_name: 'Sexy Tanktop',
                 item_price: '¥5,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-17',
+                btn_id:'item-like-btn-17',
             },{
                 item_id: 'item-16',
                 item_path: './img/items/bottoms/bottoms5.jpg',
                 item_name: 'Sexy Jeans',
                 item_price: '¥5,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-17',
+                btn_id:'item-like-btn-17',
             },],
 
             // ジャケットのデータ
@@ -1200,36 +1178,31 @@ const app = new Vue({
                 item_path: './img/items/jucket/jucket2.jpg',
                 item_name: 'Denim Taired Jackt',
                 item_price: '¥7,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-jucket-btn-1',                
+                btn_id:'item-like-jucket-btn-1',                
             },{
                 item_id: 'item-jucket-2',
                 item_path: './img/items/jucket/jucket1.jpg',
                 item_name: 'Denim Taired Jackt',
                 item_price: '¥22,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-jucket-btn-2',                
+                btn_id:'item-like-jucket-btn-2',                
             },{
                 item_id: 'item-jucket-3',
                 item_path: './img/items/jucket/jucket5.jpg',
                 item_name: 'Two way long caught',
                 item_price: '¥34,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-jucket-btn-3',
+                btn_id:'item-like-jucket-btn-3',
             },{
                 item_id: 'item-jucket-4',
                 item_path: './img/items/jucket/jucket4.jpg',
                 item_name: 'Two way Jucket',
                 item_price: '¥24,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-jucket-btn-4',
+                btn_id:'item-like-jucket-btn-4',
             },{
                 item_id: 'item-jucket-5',
                 item_path: './img/items/jucket/jucket3.jpg',
                 item_name: 'Denim Break Shirts',
                 item_price: '¥22,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-jucket-btn-5',
+                btn_id:'item-like-jucket-btn-5',
             }],
 
             // シャツのデータ
@@ -1238,36 +1211,31 @@ const app = new Vue({
                 item_path: './img/items/shirts/shirts2.jpg',
                 item_name: 'White Shirts',
                 item_price: '¥3,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-shirts-btn-1',                
+                btn_id:'item-like-shirts-btn-1',                
             },{
                 item_id: 'item-shirts-2',
                 item_path: './img/items/shirts/shirts1.jpg',
                 item_name: 'White Shirts',
                 item_price: '¥5,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-shirts-btn-2',
+                btn_id:'item-like-shirts-btn-2',
             },{
                 item_id: 'item-shirts-3',
                 item_path: './img/items/shirts/shirts3.jpg',
                 item_name: 'Aloha Shirts',
                 item_price: '¥6,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-shirts-btn-3',
+                btn_id:'item-like-shirts-btn-3',
             },{
                 item_id: 'item-shirts-4',
                 item_path: './img/items/shirts/shirts4.jpg',
                 item_name: 'White Brouse',
                 item_price: '¥4,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-shirts-btn-4',
+                btn_id:'item-like-shirts-btn-4',
             },{
                 item_id: 'item-shirts-5',
                 item_path: './img/items/shirts/shirts6.jpg',
                 item_name: 'Sexy Tanktop',
                 item_price: '¥5,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-shirts-btn-5',
+                btn_id:'item-like-shirts-btn-5',
             }],
 
             // ボトムスのデータ
@@ -1276,29 +1244,25 @@ const app = new Vue({
                 item_path: './img/items/bottoms/bottoms1.jpg',
                 item_name: 'Denim Pants',
                 item_price: '¥7,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-bottoms-btn-1',
+                btn_id:'item-like-bottoms-btn-1',
             },{
                 item_id: 'item-bottoms-2',
                 item_path: './img/items/bottoms/bottoms2.jpg',
                 item_name: 'Street Pants',
                 item_price: '¥12,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-bottoms-btn-2',
+                btn_id:'item-like-bottoms-btn-2',
             },{
                 item_id: 'item-bottoms-3',
                 item_path: './img/items/bottoms/bottoms3.jpg',
                 item_name: 'Red skiny',
                 item_price: '¥5,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-btn-3',
+                btn_id:'item-like-btn-3',
             },{
                 item_id: 'item-bottoms-3',
                 item_path: './img/items/bottoms/bottoms4.jpg',
                 item_name: 'Black skiny',
                 item_price: '¥5,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-bottoms-btn-3',
+                btn_id:'item-like-bottoms-btn-3',
             },],
 
             // アクセサリーのデータ
@@ -1307,30 +1271,29 @@ const app = new Vue({
                 item_path: './img/items/accesarry/accesary2.jpg',
                 item_name: 'Cap',
                 item_price: '¥5,000',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-accesarry-btn-1',
+                btn_id:'item-like-accesarry-btn-1',
             },{
                 item_id: 'item-accesarry-2',
                 item_path: './img/items/accesarry/accesary3.jpg',
                 item_name: 'Barray Cap',
                 item_price: '¥5,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-accesarry-btn-2',                
+                btn_id:'item-like-accesarry-btn-2',                
             },{
                 item_id: 'item-accesarry-3',
                 item_path: './img/items/accesarry/accesary1.jpg',
                 item_name: 'Sun grass',
                 item_price: '¥3,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-accesarry-btn-3',
+                btn_id:'item-like-accesarry-btn-3',
             },{
                 item_id: 'item-accesarry-4',
                 item_path: './img/items/accesarry/accesary4.jpg',
                 item_name: 'Smart-wach',
                 item_price: '¥18,500',
-                btn_path: './img/like_img/items_like.png',
-                btn_class:'item-like-accesarry-btn-4',
+                btn_id:'item-like-accesarry-btn-4',
             },],
+
+            // いいね機能
+            likedIsActive: false,
 
             // items
 
@@ -1511,6 +1474,10 @@ const app = new Vue({
         itemsTabactive(i) {
             this.items_tab_active = i;
         },
+
+        likedToggle() {
+            this.likedIsActive = !this.likedIsActive;
+        }
 
     }
 });

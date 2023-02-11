@@ -86,6 +86,13 @@
 .item-price-area-like-btn {
     border: none;
     background-color: #fff;
+    color: #111;
+}
+
+/* いいね機能 */
+
+.item-price-area-like-btn.liked-is-active {
+    color: #90000e;
 }
 
 @media screen and (max-width: 611px) {
