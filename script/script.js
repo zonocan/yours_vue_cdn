@@ -620,6 +620,20 @@ const app = new Vue({
 
             // index
 
+            // スクロールアニメーション(PC)
+            visible_about: false,
+
+            visible_service: false,
+
+            visible_review: false,
+
+            // スクロールアニメーション(SP)
+            visible_about_sp: false,
+
+            visible_service_sp: false,
+
+            visible_review_sp: false,
+
             // arrowの画像パス
             btn_arrow_path: './img/btn_arrow/btn_arrow.png',
 
@@ -1341,6 +1355,28 @@ const app = new Vue({
 
         };    
     },
+    created() {
+        // PC
+        window.addEventListener("scroll",this.handScrollAbout);
+        window.addEventListener("scroll",this.handScrollService);
+        window.addEventListener("scroll",this.handScrollReview);
+        
+        //SP 
+        window.addEventListener("scroll",this.handScrollAboutSp);
+        window.addEventListener("scroll",this.handScrollServiceSp);
+        window.addEventListener("scroll",this.handScrollReviewSp);
+    },
+    destroyed() {
+        // PC
+        window.addEventListener("scroll",this.handScrollAbout);
+        window.addEventListener("scroll",this.handScrollService);
+        window.addEventListener("scroll",this.handScrollReview);
+
+        //SP
+        window.addEventListener("scroll",this.handScrollAboutSp);
+        window.addEventListener("scroll",this.handScrollServiceSp);
+        window.addEventListener("scroll",this.handScrollReviewSp);
+    },
     methods: {
 
         // header
@@ -1360,6 +1396,60 @@ const app = new Vue({
         // header
 
         // index
+
+        // スクロールイベント
+        // about(PC)
+        handScrollAbout() {
+            if(!this.visible_about) {
+                this.visible_about = window.scrollY > 300;
+            }else if (window.scrollY < 290) {
+                this.visible_about = !this.visible_about;
+            }
+        },
+        // about(SP)
+        handScrollAboutSp() {
+            if(!this.visible_about_sp) {
+                this.visible_about_sp = window.scrollY > 30;
+            }else if(window.scrollY < 20) {
+                this.visible_about_sp = !this.visible_about_sp;
+            }
+        },
+
+        // service(PC)
+        handScrollService() {
+            if(!this.visible_service) {
+                this.visible_service = window.scrollY > 600;
+            }else if (window.scrollY < 590) {
+                this.visible_service = !this.visible_service;
+            }
+        },
+
+        // service(SP)
+        handScrollServiceSp() {
+            if(!this.visible_service_sp) {
+                this.visible_service_sp = window.scrollY > 180;
+            }else if(window.scrollY < 170) {
+                this.visible_service_sp = !this.visible_service_sp;
+            }
+        },
+
+        // review(PC)
+        handScrollReview() {
+            if(!this.visible_review) {
+                this.visible_review = window.scrollY > 900;
+            }else if (window.scrollY < 890) {
+                this.visible_review = !this.visible_review;
+            }
+        },
+
+        // review(SP)
+        handScrollReviewSp() {
+            if(!this.visible_review_sp) {
+                this.visible_review_sp = window.scrollY > 280;
+            }else if(window.scrollY < 270) {
+                this.visible_review_sp = !this.visible_review_sp;
+            }
+        },
 
         // サービスボタンのタブの切り替え(PC)
         serviceTabActivePc(i) {

@@ -143,7 +143,9 @@
       </div>
 
       <!-- aboutページ(PC) -->
-      <div class="about">
+      <div class="about"
+           :class="{ fadeInAbout : visible_about }"
+           v-show="visible_about">
         <div class="about-background-left-outer">
           <h1 class="about-h1">{{ about_h1 }}</h1>
           <!-- aboutの写真(sp) -->
@@ -174,7 +176,9 @@
       </div> 
 
       <!-- serviceページ(PC) -->
-      <div class="service">
+      <div class="service"
+           :class="{ fadeInService : visible_service }"
+           v-show="visible_service">
         <h1 class="service-h1">{{ service_h1 }}</h1>
         <div class="servic-btn-area">
           <servicebtn
@@ -194,7 +198,8 @@
       </div>
 
       <!-- reviewページ(PC) -->
-      <div class="review">
+      <div class="review"
+           :class="{ fadeInReview : visible_review}">
         <div class="review-main-area-outer">
           <h1 class="review-h1">{{ review_h1 }}</h1>
           <!-- SPメイン写真 -->
@@ -563,7 +568,9 @@
       </div>
 
       <!-- aboutページ(SP) -->
-      <div class="about">
+      <div class="about"
+           :class="{ fadeInAbout : visible_about_sp }"
+           :v-show="visible_about_sp">
         <div class="about-background-left-outer">
           <h1 class="about-h1">{{ about_h1 }}</h1>
           <!-- aboutの写真(sp) -->
@@ -594,7 +601,9 @@
       </div> 
 
       <!-- serviceページ(SP) -->
-      <div class="service">
+      <div class="service"
+           :class="{ fadeInService : visible_service_sp }"
+           :v-show="visible_service_sp">
         <h1 class="service-h1">{{ service_h1 }}</h1>
         <div class="servic-btn-area">
           <servicebtn
@@ -614,7 +623,9 @@
       </div>
 
       <!-- reviewページ(SP) -->
-      <div class="review">
+      <div class="review"
+           :class="{ fadeInReview : visible_review_sp }"
+           :v-show="visible_review_sp">
         <div class="review-main-area-outer">
           <h1 class="review-h1">{{ review_h1 }}</h1>
           <!-- SPメイン写真 -->
