@@ -171,6 +171,47 @@ h2 {
   margin-top: -40vw;
   margin-left: 5%;
 }
+
+.scroll-bar {
+  position: absolute;
+  z-index: 3;
+  width: 25px;
+  height: 100px;
+  background-color: #111;
+  text-align: center;
+  left: 0;
+  right: 0;
+  bottom: -50px;
+  margin: auto;
+  padding: 15px 0;
+}
+
+.scroll {
+  width: 100%;
+  color: #fff;
+  font-size: 10px;
+  transform: rotate(90deg);
+}
+
+.scroll-arrow-wrap {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+}
+
+.scroll-arrow {
+  animation-name: scroll;
+  animation-duration: 2.2s;
+  animation-timing-function: cubic-bezier(.15,.41,.69,.94);
+  animation-iteration-count: infinite;  
+}
+
+@keyframes scroll {
+  0% { opacity: 0; }
+  10% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(15px); opacity: 0;}
+}
+
 /* 2/11追加 */
 .top-apply-btn {
   border: #fff 1px solid;
@@ -1032,6 +1073,13 @@ h2 {
   }
   /* ハンバーガーナビ */
   /* ヘッダー(SP) */
+
+  /* top */
+  .scroll-bar {
+    height: 80px;
+    bottom: -40px;
+    padding: 5px;
+  }
 
   /* スクロール 2月12日追加(SP) */
   /* about(SP) */
